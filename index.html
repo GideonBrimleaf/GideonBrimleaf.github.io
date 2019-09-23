@@ -4,6 +4,21 @@
     <title>Test Page: Don't Panic</title>
     <meta charset="utf-8">
     <style>
+      #bird-box{
+        background-color: orange;
+      }
+      #exec-bio {
+        background-color: lightgray;
+      }
+      .bio-box {
+        border: 1px solid black;
+      }
+      .bio-box a {
+        color: green;
+      }
+      .b-o-box{
+        background-color: azure;
+      }
       a {
         color: red;
       }
@@ -25,7 +40,7 @@
   <body>
     <h1>Bonjour tout le monde - c'est bien!</h1>
     <ul>
-      <li>
+      <li id='bird-box'>
       <a href="https://example.com/">Link</a>
       </li>
       <li>
@@ -36,17 +51,17 @@
       </li>
     </ul>
     <h2>I'm an h2</h2>
-    <div id="exec-bio" class="bio-box">
+    <div id="exec-bio" class="bio-box b-o-box">
     <div>
       <a href="https://example.com/">I'm a link</a>
     </div>
-    <div>
+    <div class="bio-box b-o-box">
       <a href="https://example.com/">I'm a link</a>
     </div>
-    <div>
+    <div class="bio-box b-o-box">
       <a href="https://example.com/" >I'm a link</a>
     </div>
-    <div>
+    <div class="bio-box b-o-box">
       <a href="https://example.com/">I'm a link</a>
     </div>
   </body>
