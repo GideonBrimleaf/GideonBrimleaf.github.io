@@ -1,4 +1,8 @@
 /* GLOBAL STYLES */
+html {
+    box-shadow: 0 0 0 30px #000 inset;
+    padding: 0 30px;
+}
 
 body {
     font-family: helvetica, arial, sans;
@@ -26,6 +30,9 @@ h2 ~ p {
 .header {
     background-color: #000;
     color: #fff;
+    position: fixed;
+    width: 100%;
+    z-index: 30;
 }
 
 .header-logo {
@@ -33,6 +40,7 @@ background-color: #000;
 box-sizing: border-box;
 display: block;
 height: 10vh;
+left: -30px;
 padding-top: 10px;
 position: relative;
 text-align: center;
@@ -64,16 +72,25 @@ padding-left: 1em;
 }
 
 .header-nav a {
-color: #fff;
-font-size: 0.8rem;
-font-weight: bold;
-text-decoration: none;
-text-transform: uppercase;
+    color: #fff;
 }
+
+.nav-links a {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover,
+.nav-links a:active {
+    color: #ed6e2f;
+}
+
 
 .header-nav a:hover,
 .header-nav a:active {
-color: #ed6e2f;
+    color: #ed6e2f;
 }
 
 .header-nav > li:first-child a {
@@ -83,10 +100,44 @@ color: #ed6e2f;
 .header-nav > li:first-child a:hover {
 color: #fff;
 }
+
+/* FOOTER STYLES */
+.footer {
+    background-color: #000;
+    padding: 10vh 0 15vh;
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 50px;
+}
+
+ .footer h3 {
+    color: #fff;
+    padding-top: 1.5em;
+    text-transform: uppercase;
+ }
+
+ .footer h3 span {
+    color: #aaa;
+ }
+
+ .footer-nav li {
+    display: inline-block;
+    margin: 2em 1em 0;
+}
+
+.footer-nav a {
+    color: #ccc;
+}
+    
+
+
 /* HERO STYLES */
 .full-hero {
     background-color: #c7dbfc;
     height: 50vh;
+    position: relative;
 }
 
 /* .full-hero:hover {
@@ -119,9 +170,14 @@ color: #fff;
 
 
 .social-list {
+    position: absolute;
+    display: block;
     list-style: none;
     padding: 0;
-    text-align: center;
+    right: 10px;
+    bottom: 10px;
+    /* position: relative;
+    z-index: 40; */
 }
 
 .social-list > li {
