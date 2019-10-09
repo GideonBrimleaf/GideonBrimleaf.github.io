@@ -12,7 +12,8 @@ body {
 }
 
 .content-container {
-  flex-grow: 1;
+  display: flex;
+  flex: 1 1 auto;
   padding-top: 10vh;
   width: 100%;
 }
@@ -24,6 +25,7 @@ h1 {
 
 p {
   line-height: 1.5;
+  margin: 0.75em 0;
 }
 
 a {
@@ -141,6 +143,33 @@ h2 ~ p {
   color: #ccc;
 }
 
+/* COLUMN STYLES */
+.col-three {
+  display: flex;
+  }
+
+.col {
+  box-sizing: border-box;
+  padding: 2em;
+}
+
+.col-three .col ~ .col {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.col-three .col-nav {
+  flex: 0 1 15em;
+}
+
+.col-three .col-content {
+  flex: 1;
+}
+
+.col-three .col-aside {
+  flex: 0 1 20em;
+}
+  
+
 /* HERO STYLES */
 
 .full-hero {
@@ -204,24 +233,32 @@ h2 ~ p {
 }
 
 .home-callout {
+  align-items: center;
   background-color: #000;
   color: #fff;
+  display: flex;
   padding: 7vh 0;
 }
 
+.home-callout h3 {
+  color: inherit;
+  margin-top: 1em;
+}
+  
 .callout-title {
+  flex: 1;
   font-size: 5.75vw;
   text-align: center;
   text-transform: uppercase;
 }
 
 .callout-copy {
+  flex: 0 0 45em;
   font-size: 0.8rem;
-  padding: 1rem;
+  padding: 0 3vw;
+  /* padding: 1rem; */
 }
   
-  
-
 /* SOCIAL STYLES */
 .social-list {
   list-style: none;
