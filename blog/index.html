@@ -15,22 +15,10 @@ layout: default
         </ul>
       </div>
       <div class="col col-content blog-previews">
-      <div class="blog-posts">
-        <header class="post-header">
-          <h2><a href="">I am the title of an article</a></h2>
-          <div class="post-byline">
-            <img src="https://s.gravatar.com/avatar/0b14b7967361c613b2d64f1ca34342b0?s=80">
-            <a href="#" class="social-link">Tw</a>
-            by: Me, Myself, and I
-            <span> - Month Day, year</span>
-          </div>
-        </header>
-      <div class="posts-image" style="background-image:url('/images/shark.jpg')">
+          {% for post in site.posts %}
+          <p>{{ site.posts | size }}</p>
+          <p>{{ post.title }}</p>
+          {% endfor %} 
       </div>
-        <p>
-        Blurb
-        </p>
-      </div>
-    </div>
   </div>
 </div>
