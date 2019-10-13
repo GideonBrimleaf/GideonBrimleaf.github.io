@@ -29,7 +29,7 @@ p {
 }
 
 a {
-  color: #6397b5;
+  color: inherit;
 }
 
 h2 {
@@ -95,11 +95,14 @@ h4 {
   padding-left: 1em;
 }
 
-.header-nav a {
+.header-nav a 
+.drop-trigger {
   color: #fff;
 }
 
-.nav-links a {
+.nav-links a 
+.drop-trigger
+.show-mobile-menu {
   font-size: 0.8rem;
   font-weight: bold;
   text-decoration: none;
@@ -147,6 +150,12 @@ h4 {
 
 .footer-nav a {
   color: #ccc;
+}
+
+ /*MOBILE MENU */ 
+.mobile-menu-check,
+.show-mobile-menu {
+  display: none;
 }
 
 /* COLUMN STYLES */
@@ -542,6 +551,130 @@ margin: 2em auto 1em;
   padding-top: 2em;
 }
 
+/* DROPDOWN STYLES */
+.dropdown {
+  position: relative;
+}
+
+.dropdown:hover .drop-menu {
+display: block;
+}
+
+.dropdown:hover .drop-trigger:after {
+border-color: #ed6e2f transparent transparent;
+}
+
+.drop-trigger {
+display: inline-block;
+padding-right: 1.5em;
+position: relative;
+}
+
+.drop-trigger:after {
+border: 0.3em solid;
+border-color: #fff transparent transparent;
+content: "";
+height: 0;
+position: absolute;
+right: 0;
+top: 0.3em;
+width: 0;
+}
+
+.drop-menu {
+box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+display: none;
+list-style: none;
+padding: 1em 0 0;
+position: absolute;
+right: 0;
+z-index: 9;
+}
+
+.drop-menu:before {
+border: 0.6em solid;
+border-color: transparent transparent #fff;
+content: "";
+height: 0;
+position: absolute;
+right: 1em;
+top: -0.1em;
+width: 0;
+}
+
+.drop-menu li {
+background-color: #fff;
+}
+
+.drop-menu li ~ li {
+border-top: 1px dotted rgba(0,0,0,0.1)
+}
+
+.drop-menu li:first-child {
+border-radius: 5px 5px 0 0;
+color: #999;
+font-size: 0.5em;
+padding: 1em 1em 0.25em;
+text-align: right;
+text-transform: uppercase;
+}
+
+.drop-menu li:last-child {
+border-radius: 0 0 5px 5px;
+}
+
+.drop-menu a {
+color: #333;
+display: block;
+font-weight: normal;
+padding: 0.5em 2em 0.5em 1em;
+text-align: left;
+text-transform: none;
+white-space: nowrap;
+}
+
+.drop-menu a:hover {
+background-color: rgba(0,0,0,0.1);
+color: #333;
+}
+
+/* HIDE IN THE FOOTER */
+
+/*.footer .dropdown{*/
+/*  display: inline-block;*/
+/*}*/
+
+.footer .drop-menu {
+  bottom: 50px;
+  background-color: white;
+}
+
+.footer .drop-menu li{
+  margin: 0em;
+}
+
+.footer .drop-menu a{
+  background-color: rgba(255,255,255,1);
+  color: #333;
+  padding: 1em;
+}
+
+.footer .drop-trigger:after {
+  border-color: transparent transparent #fff;
+}
+.footer .dropdown:hover .drop-trigger:after {
+  border-color: transparent transparent #ed6e2f;
+}
+
+/*.footer .drop-trgger {*/
+/*  display: block;*/
+/*  bottom: 50px;*/
+/*}*/
+
+/*.footer .drop-trigger {*/
+/*  padding-right: 0;*/
+/*}*/
+
 @media (max-width: 800px) {
   html {
     box-shadow: none;
@@ -567,6 +700,76 @@ margin: 2em auto 1em;
   }
   .header-logo {
     left: auto;
+  }
+  
+  /* MOBILE MENU */
+
+  .show-mobile-menu {
+    display: block;
+    float: right;
+    margin-top: 1.5vh;
+    padding: 1.5em;
+    position: relative;
+  }
+  
+  .header-nav {
+    background-color: #444;
+    box-sizing: border-box;
+    left: 0;
+    /*height: 0;*/
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 10vh;
+    transition: all 0.5s ease-in-out;
+    width: 100vw;
+    z-index: 9;
+  }
+  
+  .header-nav li {
+    display: block;
+    margin-top: 1em;
+  }
+  
+  .header-nav li ~ li {
+    border: 0;
+    padding: 0;
+  }
+  
+  .header-nav li:last-child {
+    margin-bottom: 1em;
+  }
+  
+  .header-nav li:first-child a {
+    color: #fff;
+  }
+  
+  /* HIDE DROPDOWN IN THE NAV MENU */
+  .header-nav .dropdown:hover .drop-menu,
+  .header-nav .drop-trigger:after {
+    display: none;
+  }
+  
+  .header-nav .drop-trigger {
+    padding-right: 0;
+  }
+  
+  .mobile-menu-check:checked ~ .header-nav {
+    max-height: 1000px;
+    /*height: 90vh;*/
+  }
+  
+  .mobile-menu-check:checked ~ .show-mobile-menu:after {
+    background-color: #000;
+    color: #ed6e2f;
+    content: "X";
+    left: 0;
+    position: absolute;
+    top: 1.5em;
+    width: 100%;
+    text-align: center;
   }
   
   /* HOME STYLES */
@@ -632,6 +835,7 @@ margin: 2em auto 1em;
   .gallery .gallery-info {
     flex: 1;
   }
+  
 }
 
 @media (max-width: 600px) {
