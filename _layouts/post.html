@@ -1,30 +1,21 @@
 ---
 layout: default
+title: Aiming to Misbehave
 ---
-<div class="post">
-  <div class="half-hero" style="background-image:url({{ page.postHero }})"></div>
-  <article class="page">
-    <header class="post-header">
-      <h1>{{ page.title }}</h1>
-      <div class="post-byline">
-        <img src="{{ page.gravatar }}">
-        <a href="{{ page.authorTwitter }}" class="social-link">
-          <i class="fab fa-twitter"></i>
-        </a>
-        by: {{ page.author }}
-        <span> - {{ page.date | date: '%B %d, %Y' }}</span>
-      </div>
+<div class="container-fluid">
+  <div class="row bg-secondary">
+    <header class="col-lg-7 offset-lg-1 mt-4 d-flex align-items-end">
+      <h1 class="text-primary">{{ page.title }}</h1>
     </header>
-    <aside class="post-aside">
-        {% include recent-posts.html %}
-    </aside>
-    <div class="post-content">
+  </div>
+  <div class="row mt-4">
+    <main class="col-lg-7 offset-lg-1 pt-0">
+      <div class="blog-date mb-1">
+      {{ page.date | date: '%b %e, %Y' }}</div>
       {{ content }}
+    </main>
+    <div class="col-lg-3 ml-3 p-3 bg-light">
+    {% include recent-posts.html %}
     </div>
-    <footer class="post-footer">
-      {{ page.postFooter }}
-    </footer>
-  </article>
+  </div>
 </div>
-
-    

@@ -1,12 +1,26 @@
-<header class="header">
-  <nav>
-   <input type="checkbox" id="mobile-menu" class="mobile-menu-check">
-   <label for="mobile-menu" class="show-mobile-menu">Menu</label>
-    <ul class="header-nav nav-links">
-      {% include nav-links.html %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Aiming to Misbehave</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
     </ul>
-  </nav>
-  <a href="/" class="header-logo">
-    <img src="/images/logo.png" alt="Learn Enough">
-  </a>
-</header>
+  </div>
+</nav>

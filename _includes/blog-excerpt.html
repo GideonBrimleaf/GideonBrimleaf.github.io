@@ -1,0 +1,16 @@
+<div class="blog-sample bg-light"><a href="{{ post.url }}">
+  <div class = "d-flex flex-column flex-xl-row justify-content-sm-between border-top border-bottom p-3 mt-3">
+    <header>
+      <h2 class="text-primary pr-2 pl-2">{{ post.title }}</h2>
+      <div class="pr-2 pl-2 mb-2">
+        <span>{{ post.date | date: '%B %d, %Y' }}</span>
+      </div>
+      <div class="pr-3 pl-2">
+        {{ post.excerpt }}
+      </div>
+    </header>
+    <div class="posts-image align-self-center">
+      <img src="{{ post.postHero }}"/>
+    </div>
+  </div>
+</a></div>
