@@ -23,8 +23,12 @@ font-weight: 100;
 /* HERO STYLES */
 
 .hero-box {
-  height: 50vh;
   width: 100%;
+}
+@include media-breakpoint-up(sm) {
+  .hero-box {
+    height: 50vh;
+  }
 }
 
 .hero-text {
@@ -70,7 +74,6 @@ font-weight: 100;
 
 .blog-sample div:hover {
   background: lightgrey;
-  // background-repeat: no-repeat;
 }
 
 .recent-post-aside {
