@@ -49,6 +49,12 @@ font-weight: 100;
 
 /*BLOG STYLES*/
 
+.post-hero-image {
+  object-fit: cover;
+  min-width: 100%;
+  max-height: 10vh;
+}
+
 .posts-image img {
   width: 300px;
 }
