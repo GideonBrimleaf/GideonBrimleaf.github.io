@@ -1,13 +1,15 @@
 <h4 class="text-primary mb-3">Recent Posts</h4>
-    <ul class="blog-title-list recent-post-aside">
-        {% for post in site.posts limit:5 %}
-        <li>
-        <h5><a href="{{ post.url }}">{{ post.title }}</a></h5>
-        {{ post.excerpt | truncatewords:10}}
-        <div class="blog-date mb-2">{{ post.date | date: '%b %e, %Y' }}</div>
-        </li>
-        {% endfor %}
-    </ul>
-    <div class="foot-blog-link">
-        <a href="/blog">More from the blog <i class="fas fa-angle-right"></i></a>
-    </div>
+  <ul class="blog-title-list recent-post-aside">
+      {% for post in site.posts limit:5 %}
+      <div>
+        <a href="{{ post.url }}">
+          <h5>{{ post.title }}</h5>
+          {{ post.excerpt | truncatewords:10}}
+          <div class="blog-date mb-2">{{ post.date | date: '%b %e, %Y' }}</div>
+        </a>
+      </div>
+      {% endfor %}
+  </ul>
+<div class="foot-blog-link">
+  <a href="/blog">More from the blog <i class="fas fa-angle-right"></i></a>
+</div>
