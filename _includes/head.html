@@ -8,14 +8,22 @@
   
   gtag('config', 'UA-151738929-1');
   </script>
+  {% if page.title %}
+  <title>{{ page.title }} | Aiming to Misbehave</title>
+  {% else %}
+  <title>Aiming to Misbehave</title>
+  {% endif %}
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}">
+  {% else %}
+  <meta name="description" content="This blog covers the fun and bumpy road from data science to web development">
+  {% endif %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
   <link href="/favicon.png" rel="icon">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="/fonts/fontawesome-free-5.11.2-web/css/all.css">
     <link rel="stylesheet" href="/assets/css/main.css">
-  <title>Document</title>
 </head>
