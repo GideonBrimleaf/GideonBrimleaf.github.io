@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Node.js web with Express and Tailwind CSS  
+title: Node.js web apps with Express and Tailwind CSS  
 author: Gideon Brimleaf
-postHero: /assets/images/vs-code-logo.png
+postHero: /assets/images/express-tailwind-hybrid.png
 ---
 
 Javascript is currently blowing my mind at the moment with the sheer control you
