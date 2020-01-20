@@ -3,6 +3,7 @@ layout: post
 title: Adventures in Ruby - Setting up your tests in RSpec with Let
 author: Gideon Brimleaf
 postHero: /assets/images/rspec-logo.jpg
+description: Setting up RSpec tests in Ruby with Let
 ---
 
 I had been using Minitests for unit testing for a while but decided for a small project

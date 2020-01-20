@@ -3,6 +3,7 @@ layout: post
 title: Visual Studio Code - A nimble tool for Data Science
 author: Gideon Brimleaf
 postHero: /assets/images/vs-code-logo.png
+description: vscode for data science
 ---
 
 Microsoft VS Code is best known in the developer community as a light-weight code

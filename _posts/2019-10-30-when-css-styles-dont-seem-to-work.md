@@ -3,6 +3,7 @@ layout: post
 title: When CSS styles don't seem to work - the &lt;a&gt; element
 author: Gideon Brimleaf
 postHero: /assets/images/a-tag.gif
+description: a tags html
 ---
 
 CSS classes can be really powerful when utilised well - however I came across this problem when

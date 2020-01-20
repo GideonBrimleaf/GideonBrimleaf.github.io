@@ -3,6 +3,7 @@ layout: post
 title: Adventures in Ruby - Arrays of Hashes
 author: Gideon Brimleaf
 postHero: /assets/images/star_wars.jpg
+description: Arrays of hashes in ruby
 ---
 
 Coming from a data background, I am very used to viewing and handling data in 

@@ -3,6 +3,7 @@ layout: post
 title: Getting Bootstrap 4 into your Jekyll 4 project
 author: Gideon Brimleaf
 postHero: /assets/images/jekyll-logo.png
+description: Setting up Bootstrap CSS for Jekyll  
 ---
 
 Jekyll is an awesome static site generator that makes it easy to get 
