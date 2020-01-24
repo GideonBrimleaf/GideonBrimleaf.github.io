@@ -8,7 +8,7 @@ description: Pivot with SQL in data science
 
 Querying SQL directly to pull out data can be incredibly powerful, particularly
 when dealing with aggregated data.  If the data has more than one dimension, 
-the standard with SQL is to stack the dimensions horizontally, which may be 
+the standard with SQL is to stack the dimensions into rows, which may be 
 handy from a way to handle raw data but becomes harder when we want to display
 the data in a more intuitive tabular manner.  Enter the pivot!
 
@@ -135,7 +135,7 @@ SELECT * FROM
 SELECT Player,
        Date,
        COUNT(gameId) AS WinCount
-FROM #GameStats
+FROM GameStats
 WHERE WinFlag = 'Y'
 GROUP BY Player,
          Date
@@ -172,7 +172,7 @@ DECLARE @query AS NVARCHAR(MAX) <font color="#808080">--We'll need this later</f
 SELECT @ColumnName = ISNULL(@ColumnName + ',', '')
 			 +QUOTENAME(Player)
 FROM (SELECT DISTINCT Player
-	    FROM ##GameStats
+	    FROM GameStats
 	    ) AS Player
 <font color="#808080">=> [Alan],[Jack],[Kate]</font>
 </pre>
@@ -190,7 +190,7 @@ SET @query = 'SELECT * FROM
 SELECT Player,
        Date,
        COUNT(gameId) AS WinCount
-FROM ##GameStats
+FROM GameStats
 WHERE WinFlag = ''Y''
 GROUP BY Player,
          Date
@@ -227,7 +227,20 @@ CREATE TABLE ##GameStats(
 INSERT INTO ##GameStats
 VALUES (1, '20200120', 'Jack', 'Carcassonne', 'Y'),
 (2, '20200120', 'Kate', 'Carcassonne', 'N'),
-(3, '20200121', 'Alan', 'Citadels', 'Y');
+(2, '20200120', 'Kate', 'Citadels', 'Y'),
+(2, '20200120', 'Jack', 'Citadels', 'N'),
+(2, '20200120', 'Alan', 'Tsuro', 'N'),
+(2, '20200120', 'Kate', 'Tsuro', 'Y'),
+(3, '20200121', 'Alan', 'Citadels', 'Y'),
+(3, '20200121', 'Jack', 'Citadels', 'N'),
+(3, '20200121', 'Alan', 'Love Letter', 'Y'),
+(3, '20200121', 'Kate', 'Love Letter', 'N'),
+(3, '20200121', 'Kate', 'Las Vegas', 'Y'),
+(3, '20200121', 'Alan', 'Las Vegas', 'N'),
+(3, '20200121', 'Kate', 'Zombie Dice', 'Y'),
+(3, '20200121', 'Jack', 'Zombie Dice', 'N'),
+(3, '20200121', 'Kate', 'Splendor', 'Y'),
+(3, '20200121', 'Jack', 'Splendor', 'N');
 
 
 SELECT @ColumnName = ISNULL(@ColumnName + ',', '')
