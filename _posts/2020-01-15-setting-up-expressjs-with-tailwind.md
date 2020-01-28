@@ -3,15 +3,15 @@ layout: post
 title: Node.js web apps with Express and Tailwind CSS  
 author: Gideon Brimleaf
 postHero: /assets/images/express-tailwind-hybrid.png
-description: Build node.js apps with Express and Tailwind CSS 
+description: Build node.js apps with Express and Tailwind CSS
 ---
 
 Javascript is currently blowing my mind at the moment with the sheer control you
-have to manipulate web pages in dynamic ways. [Express](https://expressjs.com/) 
-is one of the most popular web frameworks and gives you the ability to do full-blown 
-web development a la Ruby on Rails without the need to switch languages. Add in 
-light-touch css framework [Tailwind CSS](https://tailwindcss.com/) and you can 
-build sweet-looking websites really quickly. 
+have to manipulate web pages in dynamic ways. [Express](https://expressjs.com/)
+is one of the most popular web frameworks and gives you the ability to do full-blown
+web development a la Ruby on Rails without the need to switch languages. Add in
+light-touch css framework [Tailwind CSS](https://tailwindcss.com/) and you can
+build sweet-looking websites really quickly.
 
 Express is a web framework for Node.js so before we start, make sure you have the
 following packages installed on your machine:
@@ -41,7 +41,7 @@ $ DEBUG=my-awesome-app:* npm start
 </pre>
 
 <pre class="shadowy">
-<img src="/assets/images/express-boot.png" alt="express home page">
+<img src="assets/images/default-browser.png" alt="express home page">
 </pre>
 
 Not very fancy but it's up and running!
@@ -49,14 +49,14 @@ Not very fancy but it's up and running!
 ### Tailwind CSS
 
 I'm a big fan of utilising CSS frameworks to get good-looking layouts in projects
-from the get-go (you can see 
+from the get-go (you can see
 [how to get Bootstrap into a jekyll blog here](https://gideonbrimleaf.github.io/2019/10/02/getting-bootstrap-4-into-your-jekyll-4project.html))
 and Tailwind allows you all that utility but boasting a lot more flexibility than
 Bootstrap.  
 
-Navigating to the project, we'll initialise Tailwind via npm. This will add 
-Tailwind CSS to your nodule_modules directory and create a tailwind.config.js file 
-in your route which will be referred to in your postcss file (next step). 
+Navigating to the project, we'll initialise Tailwind via npm. This will add
+Tailwind CSS to your nodule_modules directory and create a tailwind.config.js file
+in your route which will be referred to in your postcss file (next step).
 
 <pre class="p-2 bg-primary text-light">
 $ cd my-awesome-app
@@ -99,7 +99,7 @@ Which is populated with the following:
 Once this is all set up we can then add a script to our package.json file
 which will use postcss to load the Tailwind components referred to in our new
 css file into our default stylesheets css file created by Express. If you followed
-the steps above then there will already be a script entry, make sure you replace 
+the steps above then there will already be a script entry, make sure you replace
 it with:
 
 <pre class="p-2 bg-primary text-light">
