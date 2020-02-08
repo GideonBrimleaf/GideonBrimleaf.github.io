@@ -41,7 +41,7 @@ $ DEBUG=my-awesome-app:* npm start
 </pre>
 
 <pre class="shadowy">
-<img src="assets/images/default-browser.png" alt="express home page">
+<img src="/assets/images/express-boot.png" alt="express home page">
 </pre>
 
 Not very fancy but it's up and running!
