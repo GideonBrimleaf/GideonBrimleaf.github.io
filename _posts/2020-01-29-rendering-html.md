@@ -14,11 +14,11 @@ If you have [Visual Studio Code](https://code.visualstudio.com/) there are plent
 
 1. [Open in Browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser) by TechER - once you hit install, right click on your file and you'll see a 'Open in Default Browser' option
 
-<img src="/assets/images/default-browser.png" class="mx-auto d-block" alt="TechEr Default Browser Option">
+<img src="/assets/images/default-browser.png" class="mx-auto d-block img-fluid" alt="TechEr Default Browser Option">
 
 2. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) by Ritwick Dey - this extension gives you a little 'Go Live' button down in your tool bar you can use.
 
-<img src="/assets/images/go-live.png" class="mx-auto d-block" alt="Live Server Go Live Button">
+<img src="/assets/images/go-live.png" class="mx-auto d-block img-fluid" alt="Live Server Go Live Button">
 
 ## Atom
 
@@ -26,11 +26,11 @@ Another popular text editor/IDE Lite, [Atom](https://atom.io/) also has a couple
 
 1. [open-in-browser](https://atom.io/packages/open-in-browser) by magbicaleman.  After install you can navigate to Packages -> Open in Browser
 
-<img src="/assets/images/open-in-browser.png" class="mx-auto d-block" alt="Open in Browser Atom Package">
+<img src="/assets/images/open-in-browser.png" class="mx-auto d-block img-fluid" alt="Open in Browser Atom Package">
 
 2. [atom-live-server](https://atom.io/packages/atom-live-server) by jas-chen.  This even gives you hot-reloading straight out of the box!
 
-<img src="/assets/images/atom-live-server.png" class="mx-auto d-block" alt="Atom Live Server Package">
+<img src="/assets/images/atom-live-server.png" class="mx-auto d-block img-fluid" alt="Atom Live Server Package">
 
 ## Beyond text editors
 
