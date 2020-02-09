@@ -18,7 +18,7 @@ Traceback (most recent call last):
 
 Ah balls, I forgot to shutdown something else I was running earlier, so the port I need to serve up my new app is locked out!  Also now I don't have the terminal with that process open to do the good old `Ctrl-C`. So what do I do?
 
-We need two pieces of information to shut down the pre-existing process. We already have one - the port number (whatever app you're trying to run that's blocked should show the port number it's trying to use, even as a default if you haven't specified one), so now we need the process identification number (PID).
+We need two pieces of information to shut down the pre-existing process. We already have one - the port number (whatever app you're trying to run that's blocked should show the port number it's trying to use, if you haven't specified one then it'll use the default one), so now we need the process identification number (PID).
 
 We can look this up with the following, passing in the port number as our argument:
 
