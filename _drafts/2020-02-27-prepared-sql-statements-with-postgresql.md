@@ -7,19 +7,21 @@ description: Prepared statements with Postgresql
 ---
 In our apps we need to create dynamic queries to our databases to allow our users to interact with the data they see. Whether this is to sign up as a new user, update their existing details or maybe order something new.
 
-As we can't know ahead of time this data, we need to allow the execution of SQL with values that the user provides.  Of course this can allow for all kinds of naughty things to happen:
+As we can't know ahead of time what the users need to change in the data, we need to allow the execution of SQL with values that the user provides.  Of course this can allow for all kinds of naughty things to happen:
 
 <img src="/assets/images/exploits_of_a_mom.png" class="img-fluid" alt="xkcd comic exploits of a mom">
+
 Source: <a href="https://xkcd.com/327/">xkcd</a>
 
-This is a classic!  We need to guard against users injecting malicious SQL into our queries and messing with our data structures.  So we need some way to differentiate between the SQL statement that we execute vs the values that a user can give that statement.
+This is a classic!  We need to guard against users injecting malicious SQL into our queries and messing with our data structures.  So we need some way to differentiate between the SQL statement that we execute and the values that a user can give that statement.
 
 Prepared statements allow us to do just that.  We can prepare a SQL Statement to be executed against our database and store it like so:
 
 <pre class="p-2 bg-primary text-light">
 require 'pg'
 
-con = PG.connect { dbname: 'dnd', host: 'localhost' }
+con = PG.connect({ dbname: 'dnd',
+      host: 'localhost' })
 
 sql = 'INSERT INTO characters
        (name, age, class)
@@ -33,9 +35,11 @@ Under the hood this is creating a SQL query that is stored in our database (as '
 The '$#' symbols demonstrate that we can give these SQL statements parameters at run time (the inputs from our users). However these are now completely isolated from the SQL statement that will run them. So if our inputs for this query are as follows:
 
 <pre class="p-2 bg-primary text-light">
-values = ['Gandalf', 345, '1); DELETE FROM characters;--']
+values = ['Gandalf', 345,
+          '1); DELETE FROM characters;--']
 
-con.exec_prepared('save_character', values)
+con.exec_prepared('save_character',
+                  values)
 </pre>
 
 Our query will handle that nasty last input as a harmless string and just store it like so:
@@ -59,4 +63,4 @@ Our query will handle that nasty last input as a harmless string and just store 
   </tbody>
 </table>
 
-Our table remains completely intact. 
+Our table remains completely intact.
