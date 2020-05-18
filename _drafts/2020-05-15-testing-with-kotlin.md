@@ -2,11 +2,11 @@
 layout: post
 title: Test Driven Development with Kotlin in IntelliJ
 author: Gideon Brimleaf
-postHero: /assets/images/jekyll-logo.png
+postHero: /assets/images/kotlin-intellij.png
 description: Testing in Kotlin with IntelliJ
 ---
 
-You may have played around with Java in the JetBrains IntelliJ IDE environment. If so you may have come across JetBrains' own language Kotlin, an expressive language which leverages all the power of running a statically typed lanugage on the JVM (compatible with all the Java libraries to boot), but with a lot of the expressive features we've come to know and love about languages like Ruby and Javascript. Let's set up a Kotlin project in IntelliJ and start doing some TDD!
+You may have played around with Java in the JetBrains IntelliJ IDE environment. If so you may have come across JetBrains' own language Kotlin, an expressive language which leverages all the power of running a statically typed language on the JVM (compatible with all the Java libraries to boot), but with a lot of the expressive features we've come to know and love about languages like Ruby and Javascript. Let's set up a Kotlin project in IntelliJ and start doing some TDD!
 
 On Booting up IntelliJ, you have the ability to build a vanilla Kotlin Project straight from the selection screen. Make sure you have the ```JVM|IDEA``` option selected.  The second screen will allow you to save the project under your preferred directory with a given name and we're immediately up and running.
 
@@ -44,7 +44,7 @@ To set up JUnit tests in IntelliJ step through the following:
 <img src="/assets/images/kotlin-testing-added-dependencies.png" class="img-fluid" alt="bootstrap downloads">
 </pre>
 
-You made need to select these individually but they should both be present in the dependencies dialogue box. Once there click ok and you should have the ability to import JUnit into your Kotlin project (IntelliJ's auto-suggest is pretty powerful).
+You may need to select these individually but they should both be present in the dependencies dialogue box. Once there click ok and you should have the ability to import JUnit into your Kotlin project (IntelliJ's auto-suggest is pretty powerful).
 
 <pre class="shadowy">
 <img src="/assets/images/kotlin-testing-working-test.png" class="img-fluid" alt="bootstrap downloads">
