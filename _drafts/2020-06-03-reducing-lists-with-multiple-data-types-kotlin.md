@@ -35,7 +35,7 @@ So what do we do?  Well it's a small but important fix:
 }
 ```
 
-We can explcitly convert the moon number back into an integer directly in our reduce method. 
+We can explcitly convert the moon number back into an integer directly in our reduce method.  As if by magic this suddenly gets the compiler to recognise our item as a number again, giving us the ability to do what we need whilst handling multiple data types in the list.
 
 
 
