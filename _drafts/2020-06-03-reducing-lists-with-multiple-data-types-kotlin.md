@@ -2,7 +2,7 @@
 layout: post
 title: Let's do a Kotlin - Reducing Collections with Multiple Data Types
 author: Gideon Brimleaf
-postHero: /assets/images/kotlin-intellij.png
+postHero: /assets/images/kotlinlogo.png
 description: Reducing collections with multiple data types in Kotlin
 ---
 
