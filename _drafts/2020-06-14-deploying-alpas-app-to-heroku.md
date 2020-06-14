@@ -8,12 +8,18 @@ description: Step by step guide to deploying an Alpas app on Heroku with MySQL
 
 Alpas is an awesome web framework dedicated to the Kotlin language.  Rather than spawning from the more turgid structures of the Java ecosystem, it feels more like Ruby on Rails or Django and offers way more productivity for those coming outside Java.  Let's get an Alpas app deployed to Heroku!
 
+<div class="bg-light p-2">
 For this, you'll need the following:
+  <ul>
+    <li>An existing Alpas app running locally - Alpas docs are excellent for <a href="https://alpas.dev/docs/installation">creating a new project</a></li>
+    <li>A <a href="https://heroku.com/">Heroku account</a> as well as the <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku CLI Tools</a> installed</li>
+  </ul>
+</div>
 
-1. An existing Alpas app running locally - Alpas docs are excellent for [creating a new project](https://alpas.dev/docs/installation)
-2. A [Heroku account](https://heroku.com/) as well as the [Heroku CLI Tools](https://devcenter.heroku.com/articles/heroku-cli) installed
+---
 
 ## Step One - Preparing Your Alpas App
+---
 
 ### Adding Additional Files
 
@@ -68,58 +74,64 @@ Before you commit your `.env` file, I'd recommend creating a duplicate `.env.dev
 to this dummy version.  Double check that this new `.env.development` file is being ignored by git (the included `.gitignore` file should 
 ignore this automatically). Your `.env` should now be stripped of pretty much everything and look something like this:
 
->.env
->```
->APP_NAME=myApp
->ENABLE_NETWORK_SHARE=false
->
->MIX_APP_PORT=8080
->```
+<span class="font-weight-bold">*.env*</span>
+<pre class="p-2 bg-primary text-light">
+APP_NAME=myApp
+ENABLE_NETWORK_SHARE=false
+
+MIX_APP_PORT=8080
+</pre>
 
 Don't worry we'll add all the rest back to Heroku later. For now remove your `.env` file from `.gitignore` making sure
 it also doesn't expose your `.env.development` file and commit.
 
->Tip - once committed, you could then run 
->
->`git update-index --assume-unchanged .env` 
->
->Git will then ignore any subsequent changes to that file.  Meaning you could put back in all the contents from
->`.env.development` back in and they will not be committed to your repository. This means you can also continue to
->run your project locally
-
+<div class="bg-light p-2">
+  <p>
+  Tip - once committed, you could then run 
+  </p>
+  <p>
+  <span class="code-snippet">git update-index --assume-unchanged .env</span>
+  </p>
+  Git will then ignore any subsequent changes to that file, so you could put back in all the contents from <span class="code-snippet">.env.development</span> back in and they will not be committed to your repository. This means you can also continue to run your project locally.
+</div>
 Finally - go ahead and rebuild your project:
 
->`./alpas jar`
+<pre class="p-2 bg-primary text-light">
+./alpas jar
+</pre>
 
+---
 
 ## Step Two - Preparing Your Heroku Environment
+---
 
 ### Configuring the environment
 
 You're now ready to set up your Heroku environment:
 
->`heroku create`
+<pre class="p-2 bg-primary text-light">
+heroku create
+</pre>
 
- This will create an app in your account and set it as a remote for this project. Logging into your account via the browser
- navigate to the `App > Settings` section and click on `Reveal Config Vars`.
+ This will create an app in your account and set it as a remote for this project. Logging into your account via the browser navigate to the `App > Settings` section and click on `Reveal Config Vars`.
  
- You will now be able to add in all the contents of your `.env` file (which you copied over to your `.env.development` previously).
- Some additional important variables to add:
- 
->* `APP_HOST = 0.0.0.0`  This binds your app to run on `0.0.0.0` rather than localhost (`127.0.0.1`) which is essential for Heroku. 
-> Remember, you need to be using Alpas 0.16.3 or greater to get this to work.
->* `GRADLE_TASK = shadowJar` This tells Heroku how to build your gradle project
+ You will now be able to add in all the contents of your `.env` file (which you copied over to your `.env.development` previously). Some additional important variables to add:
+
+<ul class="bg-light py-2">
+  <li><span class="code-snippet">APP_HOST = 0.0.0.0</span>  This binds your app to run on <span class="code-snippet">0.0.0.0</span> rather than localhost (<span class="code-snippet">127.0.0.1</span>) which is essential for Heroku. Remember, you need to be using Alpas 0.16.3 or greater to get this to work.</li>
+  <li><span class="code-snippet">GRADLE_TASK = shadowJar</span> This tells Heroku how to build your gradle project.</li>
+</ul>
 
 Some variables will need to be altered/removed compared to your `.env` file:
->* Any of the `DB` configs - we will add these once we have provisioned a Heroku database
->* `APP_PORT` - this should not be added as we're dynamically deriving this from our `PortConfig.kt` file
->* `APP_LEVEL = prod` this will put your app into production mode
+<ul class="bg-light py-2">
+  <li>Any of the <span class="code-snippet">DB</span> configs - we will add these once we have provisioned a Heroku database</li>
+  <li>APP_PORT - this should not be added as we're dynamically deriving this from our PortConfig.kt file</li>
+  <li><span class="code-snippet">APP_LEVEL = prod</span> this will put your app into production mode</li>
+</ul>
 
 ### Setting up MySQL
 
-On Heroku navigate to `Resources` and search for mysql.  Heroku supports a number of MYSQL database providers, I've used 
-[JawsDB](https://elements.heroku.com/addons/jawsdb) successfully so feel free to use that but any should work fine. Once installed
-click on the add-on in Heroku, this will take you to its dashboard page which has some important information:
+On Heroku navigate to `Resources` and search for mysql.  Heroku supports a number of MYSQL database providers, I've used [JawsDB](https://elements.heroku.com/addons/jawsdb) successfully so feel free to use that but any should work fine. Once installed click on the add-on in Heroku, this will take you to its dashboard page which has some important information:
 
 * The host url
 * The username - note this will most likely not be root and be automatically provisioned
@@ -130,36 +142,45 @@ create one for you, you cannot create additional dbs without upgrading to a paid
 
 Add these to your Heroku Config Vars with the following keys:
 
->* `DB_HOST = {The host URL}`
->* `DB_CONNECTION = mysql`
->* `DB_DATABASE = {The database name}`
->* `DB_PORT = {The port}`
->* `DB_USERNAME = {The username}`
->* `DB_PASSWORD = {The password}`
+<ul class="bg-light py-2">
+  <li class="code-snippet">DB_HOST = {The host URL}</li>
+  <li class="code-snippet">DB_CONNECTION = mysql</li>
+  <li class="code-snippet">DB_DATABASE = {The database name}</li>
+  <li class="code-snippet">DB_PORT = {The port}</li>
+  <li class="code-snippet">DB_USERNAME = {The username}</li>
+  <li class="code-snippet">DB_PASSWORD = {The password}</li>
+</ul>
 
+---
 ## Step Three - Deploying and Running Migrations
+---
 
-You are no ready to deploy to heroku!  Make sure you have a compiled jar file in your project root:
+You are no ready to deploy to Heroku!  Make sure you have a compiled jar file in your project root:
 
->`./alpas jar`
+<pre class="p-2 bg-primary text-light">
+./alpas jar
+</pre>
 
-Then `git push heroku master` - Heroku will then detect that it needs to run the that it needs to install
-the right JDK version (as per our `system.properties` file) and build a gradle project as
-per the `shadowJar` value we gave it earlier. This should be up and running at your designated Heroku url.
+Then `git push heroku master` - Heroku will then detect that it needs to install the right JDK version (as per our `system.properties` file) and build a gradle project as per the `shadowJar` value we gave it earlier. This should be up and running at your designated Heroku url.
 
 Navigating to this should give us a big ol' 500 error (but the nice shiny one from Alpas) - time to run a migration!
 
-In order to successfully migrate on the free tier of Heroku, you need to temporarily bring down your app as there is not
-enough RAM on the dyno to both serve the app and run the migration:
+In order to successfully migrate on the free tier of Heroku, you need to temporarily bring down your app as there is not enough RAM on the dyno to both serve the app and run the migration:
 
->`heroku ps:scale web=0`
+<pre class="p-2 bg-primary text-light">
+heroku ps:scale web=0
+</pre>
 
 Then run the migration on Heroku:
 
-> `heroku run ./alpas db:migrate`
+<pre class="p-2 bg-primary text-light">
+heroku run ./alpas db:migrate
+</pre>
 
 Once that has successfully executed you can then bring back up the app
 
-> `heroku ps:scale web=1`
+<pre class="p-2 bg-primary text-light">
+heroku ps:scale web=1
+</pre>
 
 Refreshing your browser should bring up your home page and you are up and running in Heroku!
