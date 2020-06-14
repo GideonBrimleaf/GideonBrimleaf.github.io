@@ -2,14 +2,16 @@
 layout: post
 title: Deploying an Alpas App to Heroku
 author: Gideon Brimleaf
-postHero: /assets/images/jekyll-logo.png
+postHero: /assets/images/alpas.png
 description: Step by step guide to deploying an Alpas app on Heroku with MySQL
 ---
 
->These instructions will step you through the requirements to deploy an existing Alpas app
->to Heroku. These assume you have the following before you start:
->   1. An existing Alpas app running locally - Alpas docs are excellent for [creating a new project](https://alpas.dev/docs/installation)
->   2. A [Heroku account](https://heroku.com/) as well as the [Heroku CLI Tools](https://devcenter.heroku.com/articles/heroku-cli) installed
+Alpas is an awesome web framework dedicated to the Kotlin language.  Rather than spawning from the more turgid structures of the Java ecosystem, it feels more like Ruby on Rails or Django and offers way more productivity for those coming outside Java.  Let's get an Alpas app deployed to Heroku!
+
+For this, you'll need the following:
+
+1. An existing Alpas app running locally - Alpas docs are excellent for [creating a new project](https://alpas.dev/docs/installation)
+2. A [Heroku account](https://heroku.com/) as well as the [Heroku CLI Tools](https://devcenter.heroku.com/articles/heroku-cli) installed
 
 ## Step One - Preparing Your Alpas App
 
@@ -18,42 +20,43 @@ description: Step by step guide to deploying an Alpas app on Heroku with MySQL
 Heroku reads from a special `Procfile` to run your application which should be in the root of your
 project.  This file should contain the command to execute the alpas jar file:
 
->*Procfile*
->
->```web:    java -jar ./myApp.jar```
+<span class="font-weight-bold">*Procfile*</span>
+<pre class="p-2 bg-primary text-light">
+web:    java -jar ./myApp.jar
+</pre>
 
 Additionally, you need a `system.properties` file which will specify for Heroku the Java Runtime Environment(JRE) that is required to 
 run the project:
 
->*system.properties*
->
->```java.runtime.version=1.9```
+<span class="font-weight-bold">*system.properties*</span>
+<pre class="p-2 bg-primary text-light">
+java.runtime.version=1.9
+</pre>
 
 We need to ensure that we are using Alpas version >=`0.16.3` since this is allows us to explicitly set the `APP_HOST` variable
 (required later). Check the following and update accordingly in your `build.gradle` file:
 
->*build.gradle*
->
->`ext.alpas_version = '0.16.3'` 
+<span class="font-weight-bold">*build.gradle*</span>
+<pre class="p-2 bg-primary text-light">
+ext.alpas_version = '0.16.3'
+</pre>
 
 Heroku randomly assigns a port in its environment for you to serve your app from. This is available from the system environment variable `"PORT"`
 but you won't know what it is until runtime, so we can't store it as a concrete environment variable.  Instead, the following allows you to read
 what the port number is when running and allow your app to be served up there, defaulting to 8080 in your local environment:
 
->*src/main/kotlin/configs/PortConfig.kt*
->
->```
->package com.example.myApp.configs
->
->import dev.alpas.AppConfig
->import dev.alpas.Environment
->
->@Suppress("unused")
->class PortConfig(env: Environment) : AppConfig(env) {
->    override val appPort = env("PORT", 8080)
->}
->
->```
+<span class="font-weight-bold">*src/main/kotlin/configs/PortConfig.kt*</span>
+<pre class="p-2 bg-primary text-light">
+package com.example.myApp.configs
+
+import dev.alpas.AppConfig
+import dev.alpas.Environment
+
+@Suppress("unused")
+class PortConfig(env: Environment) : AppConfig(env) {
+    override val appPort = env("PORT", 8080)
+}
+</pre>
 
 ### Adjusting and Committing the .env file
 
