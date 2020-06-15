@@ -23,32 +23,28 @@ For this, you'll need the following:
 
 ### Adding Additional Files
 
-Heroku reads from a special `Procfile` to run your application which should be in the root of your
-project.  This file should contain the command to execute the alpas jar file:
+Heroku reads from a special <span class="code-snippet">Procfile</span> to run your application which should be in the root of your project.  This file should contain the command to execute the alpas jar file:
 
 <span class="font-weight-bold">*Procfile*</span>
 <pre class="p-2 bg-primary text-light">
 web:    java -jar ./myApp.jar
 </pre>
 
-Additionally, you need a `system.properties` file which will specify for Heroku the Java Runtime Environment(JRE) that is required to 
-run the project:
+Additionally, you need a <span class="code-snippet">system.properties</span> file which will specify for Heroku the Java Runtime Environment (JRE) that is required to run the project:
 
 <span class="font-weight-bold">*system.properties*</span>
 <pre class="p-2 bg-primary text-light">
 java.runtime.version=1.9
 </pre>
 
-We need to ensure that we are using Alpas version >=`0.16.3` since this is allows us to explicitly set the `APP_HOST` variable
-(required later). Check the following and update accordingly in your `build.gradle` file:
+We need to ensure that we are using Alpas version >=<span class="code-snippet">0.16.3</span> since this allows us to explicitly set the <span class="code-snippet">APP_HOST</span> variable (required later). Check the following and update accordingly in your <span class="code-snippet">build.gradle</span> file:
 
 <span class="font-weight-bold">*build.gradle*</span>
 <pre class="p-2 bg-primary text-light">
 ext.alpas_version = '0.16.3'
 </pre>
 
-Heroku randomly assigns a port in its environment for you to serve your app from. This is available from the system environment variable `"PORT"`
-but you won't know what it is until runtime, so we can't store it as a concrete environment variable.  Instead, the following allows you to read
+Heroku randomly assigns a port in its environment for you to serve your app from. This is available from the system environment variable <span class="code-snippet">"PORT"</span> but you won't know what it is until runtime, so we can't store it as a concrete environment variable.  Instead, the following allows you to read
 what the port number is when running and allow your app to be served up there, defaulting to 8080 in your local environment:
 
 <span class="font-weight-bold">*src/main/kotlin/configs/PortConfig.kt*</span>
@@ -66,13 +62,10 @@ class PortConfig(env: Environment) : AppConfig(env) {
 
 ### Adjusting and Committing the .env file
 
-As per the [Alpas docs](https://alpas.dev/docs/configuration#environment) - you shouldn't usually commit your project's `.env` file.
-However Heroku builds your app from your git repository, and since your Alpas needs the presence of a `.env` file to deploy this is one of
+As per the [Alpas docs](https://alpas.dev/docs/configuration#environment) you shouldn't usually commit your project's <span class="code-snippet">.env</span> file. However Heroku builds your app from your git repository, and since your Alpas needs the presence of a <span class="code-snippet">.env</span> file to deploy this is one of
 the cases where we need to break the rules.
 
-Before you commit your `.env` file, I'd recommend creating a duplicate `.env.development` file and moving all of your `.env` file contents
-to this dummy version.  Double check that this new `.env.development` file is being ignored by git (the included `.gitignore` file should 
-ignore this automatically). Your `.env` should now be stripped of pretty much everything and look something like this:
+Before you commit your <span class="code-snippet">.env</span> file, I'd recommend creating a duplicate <span class="code-snippet">.env.development</span> file and moving all of your <span class="code-snippet">.env</span> file contents to this dummy version.  Double check that this new <span class="code-snippet">.env.development</span> file is being ignored by git (the included <span class="code-snippet">.gitignore</span> file should ignore this automatically). Your <span class="code-snippet">.env</span> should now be stripped of pretty much everything and look something like this:
 
 <span class="font-weight-bold">*.env*</span>
 <pre class="p-2 bg-primary text-light">
@@ -82,8 +75,7 @@ ENABLE_NETWORK_SHARE=false
 MIX_APP_PORT=8080
 </pre>
 
-Don't worry we'll add all the rest back to Heroku later. For now remove your `.env` file from `.gitignore` making sure
-it also doesn't expose your `.env.development` file and commit.
+Don't worry we'll add all the rest back to Heroku later. For now remove your <span class="code-snippet">.env</span> file from <span class="code-snippet">.gitignore</span> making sure it also doesn't expose your <span class="code-snippet">.env.development</span> file and commit.
 
 <div class="bg-light p-2">
   <p>
@@ -113,25 +105,25 @@ You're now ready to set up your Heroku environment:
 heroku create
 </pre>
 
- This will create an app in your account and set it as a remote for this project. Logging into your account via the browser navigate to the `App > Settings` section and click on `Reveal Config Vars`.
+ This will create an app in your account and set it as a remote for this project. Logging into your account via the browser navigate to the <span class="code-snippet">App > Settings</span> section and click on <span class="code-snippet">Reveal Config Vars</span>.
  
- You will now be able to add in all the contents of your `.env` file (which you copied over to your `.env.development` previously). Some additional important variables to add:
+ You will now be able to add in all the contents of your <span class="code-snippet">.env</span> file (which you copied over to your <span class="code-snippet">.env.development</span> previously). Some additional important variables to add:
 
 <ul class="bg-light py-2">
   <li><span class="code-snippet">APP_HOST = 0.0.0.0</span>  This binds your app to run on <span class="code-snippet">0.0.0.0</span> rather than localhost (<span class="code-snippet">127.0.0.1</span>) which is essential for Heroku. Remember, you need to be using Alpas 0.16.3 or greater to get this to work.</li>
   <li><span class="code-snippet">GRADLE_TASK = shadowJar</span> This tells Heroku how to build your gradle project.</li>
 </ul>
 
-Some variables will need to be altered/removed compared to your `.env` file:
+Some variables will need to be altered/removed compared to your <span class="code-snippet">.env</span> file:
 <ul class="bg-light py-2">
   <li>Any of the <span class="code-snippet">DB</span> configs - we will add these once we have provisioned a Heroku database</li>
-  <li>APP_PORT - this should not be added as we're dynamically deriving this from our PortConfig.kt file</li>
+  <li><span class="code-snippet">APP_PORT</span> - this should not be added as we're dynamically deriving this from our <span class="code-snippet">PortConfig.kt</span> file</li>
   <li><span class="code-snippet">APP_LEVEL = prod</span> this will put your app into production mode</li>
 </ul>
 
 ### Setting up MySQL
 
-On Heroku navigate to `Resources` and search for mysql.  Heroku supports a number of MYSQL database providers, I've used [JawsDB](https://elements.heroku.com/addons/jawsdb) successfully so feel free to use that but any should work fine. Once installed click on the add-on in Heroku, this will take you to its dashboard page which has some important information:
+On Heroku navigate to <span class="code-snippet">Resources</span> and search for mysql.  Heroku supports a number of MYSQL database providers, I've used [JawsDB](https://elements.heroku.com/addons/jawsdb) successfully so feel free to use that but any should work fine. Once installed click on the add-on in Heroku, this will take you to its dashboard page which has some important information:
 
 * The host url
 * The username - note this will most likely not be root and be automatically provisioned
@@ -155,13 +147,13 @@ Add these to your Heroku Config Vars with the following keys:
 ## Step Three - Deploying and Running Migrations
 ---
 
-You are no ready to deploy to Heroku!  Make sure you have a compiled jar file in your project root:
+You are now ready to deploy to Heroku!  Make sure you have a compiled jar file in your project root:
 
 <pre class="p-2 bg-primary text-light">
 ./alpas jar
 </pre>
 
-Then `git push heroku master` - Heroku will then detect that it needs to install the right JDK version (as per our `system.properties` file) and build a gradle project as per the `shadowJar` value we gave it earlier. This should be up and running at your designated Heroku url.
+Then <span class="code-snippet">git push heroku master</span> - Heroku will then detect that it needs to install the right JDK version (as per our <span class="code-snippet">system.properties</span> file) and build a gradle project as per the <span class="code-snippet">shadowJar</span> value we gave it earlier. This should be up and running at your designated Heroku url.
 
 Navigating to this should give us a big ol' 500 error (but the nice shiny one from Alpas) - time to run a migration!
 
