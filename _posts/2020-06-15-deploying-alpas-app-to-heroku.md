@@ -174,3 +174,12 @@ heroku ps:scale web=1
 </pre>
 
 Refreshing your browser should bring up your home page and you are up and running in Heroku!
+
+<div class="bg-light p-2">
+  <p>
+  Tip - you may still find that the migration exits too early because the dyno capacity on the free tier has been maxed out. If this happens try making a trivial change to your project to force a new deploy (with the Heroku web process set to 0), navigate to <span class="code-snippet">App > More > Restart All Dynos</span> to reset the box.  Then try to run the migration command.
+  </p>
+  <p>
+  Alternatively try <span class="code-snippet">App > More > Restart All Dynos</span> followed by <span class="code-snippet">heroku ps:scale web=0</span> to ensure that the app is not running when trying to run a migration
+  </p>
+</div>
