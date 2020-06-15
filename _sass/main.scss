@@ -16,6 +16,10 @@ font-family: 'Roboto', sans-serif;
 font-weight: 100;
 }
 
+main a {
+  text-decoration: underline;
+}
+
 .content-container {
   flex-grow: 1;
 }
