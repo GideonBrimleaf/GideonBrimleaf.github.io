@@ -23,11 +23,11 @@ For this, you'll need the following:
 
 ### Adding Additional Files
 
-Heroku reads from a special <span class="code-snippet">Procfile</span> to run your application which should be in the root of your project.  This file should contain the command to create an empty .env file in production (which is required for the app to run) and execute the project's jar file:
+Heroku reads from a special <span class="code-snippet">Procfile</span> to run your application which should be in the root of your project.  This file should contain the command to execute the project's jar file:
 
 <span class="font-weight-bold">*Procfile*</span>
 <pre class="p-2 bg-primary text-light">
-web:  touch .env && java -jar ./myApp.jar
+web:  java -jar ./myApp.jar
 </pre>
 
 Additionally, you need a <span class="code-snippet">system.properties</span> file which will specify for Heroku the Java Runtime Environment (JRE) that is required to run the project:
