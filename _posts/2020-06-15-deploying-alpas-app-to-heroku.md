@@ -37,13 +37,6 @@ Additionally, you need a <span class="code-snippet">system.properties</span> fil
 java.runtime.version=1.9
 </pre>
 
-We need to ensure that we are using Alpas version >=<span class="code-snippet">0.16.3</span> since this allows us to explicitly set the <span class="code-snippet">APP_HOST</span> variable (required later). Check the following and update accordingly in your <span class="code-snippet">build.gradle</span> file:
-
-<span class="font-weight-bold">*build.gradle*</span>
-<pre class="p-2 bg-primary text-light">
-ext.alpas_version = '0.16.3'
-</pre>
-
 Heroku randomly assigns a port in its environment for you to serve your app from. This is available from the system environment variable <span class="code-snippet">"PORT"</span> but you won't know what it is until runtime, so we can't store it as a concrete environment variable.  Instead, the following allows you to read what the port number is when running and allow your app to be served up there, defaulting to 8080 in your local environment:
 
 <span class="font-weight-bold">*src/main/kotlin/configs/PortConfig.kt*</span>
@@ -56,6 +49,33 @@ import dev.alpas.Environment
 @Suppress("unused")
 class PortConfig(env: Environment) : AppConfig(env) {
     override val appPort = env("PORT", 8080)
+}
+</pre>
+
+### Altering Existing Files
+
+We need to ensure that we are using Alpas version >=<span class="code-snippet">0.16.3</span> since this allows us to explicitly set the <span class="code-snippet">APP_HOST</span> variable (required later). Check the following and update accordingly in your <span class="code-snippet">build.gradle</span> file:
+
+<span class="font-weight-bold">*build.gradle*</span>
+<pre class="p-2 bg-primary text-light">
+ext.alpas_version = '0.16.3'
+</pre>
+
+Alpas needs a <span class="code-snippet">.env</span> file in the production environment to run migration scripts amongst other processes. As per the <a href="https://alpas.dev/docs/configuration#environment">Alpas docs</a> you shouldn't commit one, so we'll create an empty one in our route directory if it doesn't exist whenever the <span class="code-snippet">main</span> app function is invoked:
+
+<span class="font-weight-bold">*src/main/kotlin/start.kt*</span>
+<pre class="p-2 bg-primary text-light">
+package com.example.myApp
+
+import dev.alpas.Alpas
+import java.io.File
+
+fun main(args: Array&lt;String&gt;) {
+    val file = File(".env")
+    if (!file.exists()){
+        file.createNewFile()
+    }
+    return Alpas(args).routes { addRoutes() }.ignite()
 }
 </pre>
 
