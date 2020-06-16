@@ -72,7 +72,7 @@ import java.io.File
 
 fun main(args: Array&lt;String&gt;) {
     val file = File(".env")
-    if (!file.exists()){
+    if (!file.exists()) {
         file.createNewFile()
     }
     return Alpas(args).routes { addRoutes() }.ignite()
