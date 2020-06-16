@@ -23,11 +23,11 @@ For this, you'll need the following:
 
 ### Adding Additional Files
 
-Heroku reads from a special <span class="code-snippet">Procfile</span> to run your application which should be in the root of your project.  This file should contain the command to execute the alpas jar file:
+Heroku reads from a special <span class="code-snippet">Procfile</span> to run your application which should be in the root of your project.  This file should contain the command to create an empty .env file in production (which is required for the app to run) and execute the project's jar file:
 
 <span class="font-weight-bold">*Procfile*</span>
 <pre class="p-2 bg-primary text-light">
-web:    java -jar ./myApp.jar
+web:  touch .env && java -jar ./myApp.jar
 </pre>
 
 Additionally, you need a <span class="code-snippet">system.properties</span> file which will specify for Heroku the Java Runtime Environment (JRE) that is required to run the project:
@@ -59,31 +59,6 @@ class PortConfig(env: Environment) : AppConfig(env) {
 }
 </pre>
 
-### Adjusting and Committing the .env file
-
-As per the [Alpas docs](https://alpas.dev/docs/configuration#environment) you shouldn't usually commit your project's <span class="code-snippet">.env</span> file. However Heroku builds your app from your git repository, and since your Alpas needs the presence of a <span class="code-snippet">.env</span> file to deploy this is one of the cases where we need to break the rules.
-
-Before you commit your <span class="code-snippet">.env</span> file, I'd recommend creating a duplicate <span class="code-snippet">.env.development</span> file and moving all of your <span class="code-snippet">.env</span> file contents to this dummy version.  Double check that this new <span class="code-snippet">.env.development</span> file is being ignored by git (the starter template <span class="code-snippet">.gitignore</span> file should ignore this automatically). Your <span class="code-snippet">.env</span> should now be stripped of pretty much everything and look something like this:
-
-<span class="font-weight-bold">*.env*</span>
-<pre class="p-2 bg-primary text-light">
-APP_NAME=myApp
-ENABLE_NETWORK_SHARE=false
-
-MIX_APP_PORT=8080
-</pre>
-
-Don't worry we'll add all the rest back to Heroku later. For now remove your <span class="code-snippet">.env</span> file from <span class="code-snippet">.gitignore</span> making sure it also doesn't expose your <span class="code-snippet">.env.development</span> file and commit.
-
-<div class="bg-light p-2">
-  <p>
-  Tip - once committed, you could then run 
-  </p>
-  <p>
-  <span class="code-snippet">git update-index --assume-unchanged .env</span>
-  </p>
-  Git will then ignore any subsequent changes to that file, so you could put all the contents from <span class="code-snippet">.env.development</span> back in and they will not be committed to your repository. This means you can also continue to run your project locally.
-</div>
 Finally - go ahead and rebuild your project:
 
 <pre class="p-2 bg-primary text-light">
@@ -105,7 +80,7 @@ heroku create
 
  This will create an app in your account and set it as a remote for this project. Logging into your account via the browser navigate to the <span class="code-snippet">App > Settings</span> section and click on <span class="code-snippet">Reveal Config Vars</span>.
  
- You will now be able to add in all the contents of your <span class="code-snippet">.env</span> file (which you copied over to your <span class="code-snippet">.env.development</span> previously). Note, you can also do this via the command line with <span class="code-snippet">heroku config:set {KEY}="{VALUE}"</span>. Some additional important variables to add:
+ You will now be able to add in all the contents of your <span class="code-snippet">.env</span> file. Note, you can also do this via the command line with <span class="code-snippet">heroku config:set {KEY}="{VALUE}"</span>. Some additional important variables to add:
 
 <ul class="bg-light py-2">
   <li><span class="code-snippet">APP_HOST = 0.0.0.0</span>  This binds your app to run on <span class="code-snippet">0.0.0.0</span> rather than localhost (<span class="code-snippet">127.0.0.1</span>) which is essential for Heroku. Remember, you need to be using Alpas 0.16.3 or greater to get this to work.</li>
