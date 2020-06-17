@@ -184,4 +184,4 @@ Having successfully deployed to Heroku, future deployments follow three simple s
 ## Problems with Running Migrations?
 ---
 
-The Heroku free tier may have memory limit issues when runnning migrations - follow on to this article for help. 
+The Heroku free tier may have memory limit issues when running migrations - follow on to [this article](https://gideonbrimleaf.github.io/2020/06/17/running-migrations-on-heroku.html) for help. 

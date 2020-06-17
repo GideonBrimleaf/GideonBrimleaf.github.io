@@ -21,6 +21,6 @@ If the problem persists, you will need to run the <span class="code-snippet">db:
 1. Create a new file called <span class="code-snippet">alpas_prod.sh</span> in the root of your project.
 2. Copy and paste in the contents of [this sample file](https://gist.github.com/GideonBrimleaf/fb57c60f5b10c547d0f88468d4aaa9ad) into your <span class="code-snippet">alpas_prod.sh</span> file.  This is very similar to the original <span class="code-snippet">alpas</span> script but runs against the already compiled jar file rather than using gradle commands which recompile the project. Be sure to rename the jar file reference in the script to your project's jar file after copying over. 
 3. As per the original <span class="code-snippet">alpas</span> script, make sure this new file has executable rights with <span class="code-snippet">chmod +x ./alpas_prod.sh</span>
-4. Commit your changes then step through the migration process in the [previous post]((https://gideonbrimleaf.github.io/2020/06/15/deploying-alpas-app-to-heroku.html)), substituting <span class="code-snippet">heroku run ./alpas_prod.sh db:migrate</span> in for the migration command.
+4. Commit your changes then step through the migration process in the [previous post](https://gideonbrimleaf.github.io/2020/06/15/deploying-alpas-app-to-heroku.html), substituting <span class="code-snippet">heroku run ./alpas_prod.sh db:migrate</span> in for the migration command.
 
 You should see now that the migration happens without the need to recompile and successfully executes!
