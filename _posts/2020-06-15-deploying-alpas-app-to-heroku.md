@@ -150,7 +150,7 @@ Then <span class="code-snippet">git push heroku master</span> - Heroku will then
 
 Navigating to this should give us a 500 error (but the nice shiny one from Alpas) - time to run a migration!
 
-In order to successfully migrate on the free tier of Heroku, you need to temporarily bring down your app as there is not enough RAM on the dyno to both serve the app and run the migration:
+In order to successfully migrate on Heroku, you need to temporarily bring down your app as there is not enough RAM on the dyno to both serve the app and run the migration:
 
 <pre class="p-2 bg-primary text-light">
 heroku ps:scale web=0
