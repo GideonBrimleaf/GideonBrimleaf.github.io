@@ -62,7 +62,7 @@ src/App.Js
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { AuthProvider } from './auth/Auth'
+import { AuthProvider } from './components/Auth'
 import Login from './components/Login'
 import Home from './components/Home'
 import SignUp from './components/SignUp'
