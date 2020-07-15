@@ -90,12 +90,12 @@ export default App;
 
 There's a couple of things going on here:
 
-1. All of our components are on public routes at the moment - everyone can see the Home and UserProfile components
-2. Our <span class="code-snippet">Home</span> and <span class="code-snippet">UserProfile</span> components have props that need to be passed out to them.  In order to get a component with props working with React Router, you need to user the render argument, passing in a callback with the component and its props to be returned. 
+1. All of our components are on public routes at the moment - everyone can see the <span class="code-snippet">Home</span> and <span class="code-snippet">UserProfile</span> components
+2. Our <span class="code-snippet">Home</span> and <span class="code-snippet">UserProfile</span> components have props that need to be passed out to them.  In order to get a component with props working with React Router, you need to user the <span class="code-snippet">render</span> argument, passing in a callback with the component and its props to be returned. 
 
 ## Setting up Authentication
 
-We want these components behind our authentication wall, which is being provided by Firebase and being shared across all our components by the AuthProvider component.  If you've been following other tutorials you'll probably start by just substituting in the <span class="code-snippet">PrivateRoute</span> component for the Route component like so:
+We want these components behind our authentication wall, which is being provided by Firebase and being shared across all our components by the <span class="code-snippet">AuthProvider</span> component.  If you've been following other tutorials you'll probably start by just substituting in the <span class="code-snippet">PrivateRoute</span> component for the Route component like so:
 
 <span class="font-weight-bold">*src/App.Js*</span>
 
