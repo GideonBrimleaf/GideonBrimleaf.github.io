@@ -2,7 +2,7 @@
 layout: post
 title: Passing Props to Protected React Components
 author: Gideon Brimleaf
-postHero: /assets/images/kotlin-intellij.png
+postHero: /assets/images/react-router.png
 description: Using props with react components in react router that are protected
 ---
 
@@ -46,15 +46,15 @@ Building a React app with <span class="code-snippet">[create-react-app](https://
 
 The important components are:
 
-* Auth.js - this component, takes advantage of ReactContext to share if the current user is authenticated or not to all components in the app
-* Firebase.js - we will be using Google Firebase to give us some Authentication out of the box
-* Home.js - the home component that will require a user to sign up and/or login to view
-* Login.js - this will allow the user to login
-* PrivateRoute.js - the wrapping component that will render components only when a check has been made to ensure the user has logged in, otherwise it will redirect the user to login
-* SignUp.js - this will allow the user to sign up to view private content
-* UserProfile.js - another component which only a logged-in user can see
+* <span class="code-snippet">Auth.js</span> - this component, takes advantage of ReactContext to share if the current user is authenticated or not to all components in the app
+* <span class="code-snippet">Firebase.js</span> - we will be using Google Firebase to give us some Authentication out of the box
+* <span class="code-snippet">Home.js</span> - the home component that will require a user to sign up and/or login to view
+* <span class="code-snippet">Login.js</span> - this will allow the user to login
+* <span class="code-snippet">PrivateRoute.js</span> - the wrapping component that will render components only when a check has been made to ensure the user has logged in, otherwise it will redirect the user to login
+* <span class="code-snippet">SignUp.js</span> - this will allow the user to sign up to view private content
+* <span class="code-snippet">UserProfile.js</span> - another component which only a logged-in user can see
 
-Once you have these components in place you can modify App.js to use React Router to have all our components designated to specific URLs. This would look something like the following:
+Once you have these components in place you can modify <span class="code-snippet">App.js</span> to use React Router to have all our components designated to specific URLs. This would look something like the following:
 
 <span class="font-weight-bold">*src/App.Js*</span>
 
@@ -91,9 +91,11 @@ export default App;
 There's a couple of things going on here:
 
 1. All of our components are on public routes at the moment - everyone can see the Home and UserProfile components
-2. Our Home and UserProfile components have props that need to be passed out to them.  In order to get a component with props working with React Router, you need to user the render argument, passing in a callback with the component and its props to be returned. 
+2. Our <span class="code-snippet">Home</span> and <span class="code-snippet">UserProfile</span> components have props that need to be passed out to them.  In order to get a component with props working with React Router, you need to user the render argument, passing in a callback with the component and its props to be returned. 
 
-We want these components behind our authentication wall, which is being provided by Firebase and being shared across all our components by the AuthProvider component.  If you've been following other tutorials you'll probably start by just substituting in the PrivateRoute component for the Route component like so:
+## Setting up Authentication
+
+We want these components behind our authentication wall, which is being provided by Firebase and being shared across all our components by the AuthProvider component.  If you've been following other tutorials you'll probably start by just substituting in the <span class="code-snippet">PrivateRoute</span> component for the Route component like so:
 
 <span class="font-weight-bold">*src/App.Js*</span>
 
@@ -121,7 +123,7 @@ function App() {
 export default App;
 </pre>
 
-However this isn't quite enough, you'll get some nasty errors as React doesn't know how to handle the render argument (where it was fine with it in the Route component).  So we need to make some changes.  Let's start with our PrivateRoute component:
+However this isn't quite enough, you'll get some nasty errors as React doesn't know how to handle the <span class="code-snippet">render</span> argument (where it was fine with it in the <span class="code-snippet">Route</span> component).  So we need to make some changes.  Let's start with our <span class="code-snippet">PrivateRoute</span> component:
 
 <span class="font-weight-bold">*src/components/PrivateRoute.js*</span>
 
@@ -150,7 +152,7 @@ const PrivateRoute = ({ component: ComponentToRender, ...rest }) => {
 export default PrivateRoute
 </pre>
 
-So this is a function, which takes in our component that we want to render, checks the context we made to see if the user is authenticated and returns a React Router Route component with our component we want to render in.  What we need to do is add an additional argument to this function which represents the props we need to pass to our component, then we can make sure our component we want to render can access those props:
+So this is a function, which takes in our component that we want to render, checks the context we made to see if the user is authenticated and returns a React Router <span class="code-snippet">Route</span> component with our component we want to render in.  What we need to do is add an additional argument to this function which represents the props we need to pass to our component, then we can make sure our component we want to render can access those props:
 
 <span class="font-weight-bold">*src/components/PrivateRoute.js*</span>
 
@@ -179,7 +181,7 @@ const PrivateRoute = ({ component: ComponentToRender, componentProps, ...rest })
 export default PrivateRoute
 </pre>
 
-Note how the componentProps variable here is spread into a javascript object.  This is important as it determines how we pass in our components.  Rather than providing the props like a standard component, we need to pass them in as a javascript object.
+Note how the <span class="code-snippet">componentProps</span> variable here is spread into a javascript object.  This is important as it determines how we pass in our components.  Rather than providing the props like a standard component, we need to pass them in as a javascript object.
 
 <span class="font-weight-bold">*src/App.js*</span>
 
@@ -208,4 +210,4 @@ export default App;
 </pre>
 
 
-This setup is also very flexible, as components which use different props can be wrapped in the same PrivateRoute component.  
+This setup is also very flexible, as components which use different props can be wrapped in the same <span class="code-snippet">PrivateRoute</span> component.  
