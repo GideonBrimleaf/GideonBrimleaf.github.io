@@ -10,7 +10,7 @@ The React Router is a powerful tool for creating targeted React components for s
 
 ## App Preparation
 
-Building a React app with [create-react-app](https://create-react-app.dev/), [React Router](https://reactrouter.com/web/guides/quick-start) and authentication is extensively covered and so, if you haven't already, I'd recommend checking tutorials such as those by [Maxim Ivanov](https://maksimivanov.com/posts/firebase-react-tutorial/), or [Binh Tran](https://medium.com/@thanhbinh.tran93/private-route-public-route-and-restricted-route-with-react-router-d50b27c15f5e#:~:text=full%20source%20code-,Private%20Route,function%20separately%20in%20utils%20folder.) to get you up and running.  [Google Firebase](https://firebase.google.com/) is a great platform for building database-backed React apps quickly and gives you authentication out of the box.  By that point your app should hopefully look something with a similar structure to the following (you can find the actual code [here](https://github.com/GideonBrimleaf/react-basic-auth-template)):
+Building a React app with <span class="code-snippet">[create-react-app](https://create-react-app.dev/)</span>, [React Router](https://reactrouter.com/web/guides/quick-start) and authentication is extensively covered and so, if you haven't already, I'd recommend checking tutorials such as those by [Maxim Ivanov](https://maksimivanov.com/posts/firebase-react-tutorial/), or [Binh Tran](https://medium.com/@thanhbinh.tran93/private-route-public-route-and-restricted-route-with-react-router-d50b27c15f5e#:~:text=full%20source%20code-,Private%20Route,function%20separately%20in%20utils%20folder.) to get you up and running.  [Google Firebase](https://firebase.google.com/) is a great platform for building database-backed React apps quickly and gives you authentication out of the box.  By that point your app should hopefully look something with a similar structure to the following (you can find the actual code [here](https://github.com/GideonBrimleaf/react-basic-auth-template)):
 
 <pre class="p-2 bg-primary text-light">
 ├── README.md
@@ -56,7 +56,7 @@ The important components are:
 
 Once you have these components in place you can modify App.js to use React Router to have all our components designated to specific URLs. This would look something like the following:
 
-src/App.Js
+<span class="font-weight-bold">*src/App.Js*</span>
 
 <pre class="p-2 bg-primary text-light">
 import React from 'react';
@@ -70,18 +70,18 @@ import UserProfile from './components/UserProfile'
 
 function App() {
   return (
-    <div className="App">
-      <AuthProvider>
-          <Router>
-            <Switch>
-            <Route exact path="/" render={() => <Home message="Hello from the home page!" />} />
-            <Route path="/user/:userId" render={(matchProps) => <UserProfile {...matchProps} profileText="Welcome to your profile" />} />
-            <Route exact path="/login" component={Login} /> 
-            <Route exact path="/signup" component={SignUp} /> 
-            </Switch> 
-          </Router>
-        </AuthProvider>
-    </div>
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;AuthProvider&gt;
+          &lt;Router&gt;
+            &lt;Switch&gt;
+            &lt;Route exact path=&quot;/&quot; render={() =&gt; &lt;Home message=&quot;Hello from the home page!&quot; /&gt;} /&gt;
+            &lt;Route path=&quot;/user/:userId&quot; render={(matchProps) =&gt; &lt;UserProfile {...matchProps} profileText=&quot;Welcome to your profile&quot; /&gt;} /&gt;
+            &lt;Route exact path=&quot;/login&quot; component={Login} /&gt; 
+            &lt;Route exact path=&quot;/signup&quot; component={SignUp} /&gt; 
+            &lt;/Switch&gt; 
+          &lt;/Router&gt;
+        &lt;/AuthProvider&gt;
+    &lt;/div&gt;
   );
 }
 
@@ -95,7 +95,7 @@ There's a couple of things going on here:
 
 We want these components behind our authentication wall, which is being provided by Firebase and being shared across all our components by the AuthProvider component.  If you've been following other tutorials you'll probably start by just substituting in the PrivateRoute component for the Route component like so:
 
-src/App.Js
+<span class="font-weight-bold">*src/App.Js*</span>
 
 <pre class="p-2 bg-primary text-light">
 import ... [As before]
@@ -103,18 +103,18 @@ import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   return (
-    <div className="App">
-      <AuthProvider>
-          <Router>
-            <Switch>
-            <PrivateRoute exact path="/" render={() => <Home message="Hello from the home page!" />} /> { /*NEW!*/ }
-            <PrivateRoute path="/user/:userId" render={(matchProps) => <UserProfile {...matchProps} profileText="Welcome to your profile" />} /> { /*NEW!*/ }
-            <Route exact path="/login" component={Login} /> 
-            <Route exact path="/signup" component={SignUp} /> 
-            </Switch> 
-          </Router>
-        </AuthProvider>
-    </div>
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;AuthProvider&gt;
+          &lt;Router&gt;
+            &lt;Switch&gt;
+            &lt;PrivateRoute exact path=&quot;/&quot; render={() =&gt; &lt;Home message=&quot;Hello from the home page!&quot; /&gt;} /&gt; { /*NEW!*/ }
+            &lt;PrivateRoute path=&quot;/user/:userId&quot; render={(matchProps) =&gt; &lt;UserProfile {...matchProps} profileText=&quot;Welcome to your profile&quot; /&gt;} /&gt; { /*NEW!*/ }
+            &lt;Route exact path=&quot;/login&quot; component={Login} /&gt; 
+            &lt;Route exact path=&quot;/signup&quot; component={SignUp} /&gt; 
+            &lt;/Switch&gt; 
+          &lt;/Router&gt;
+        &lt;/AuthProvider&gt;
+    &lt;/div&gt;
   );
 }
 
@@ -123,7 +123,7 @@ export default App;
 
 However this isn't quite enough, you'll get some nasty errors as React doesn't know how to handle the render argument (where it was fine with it in the Route component).  So we need to make some changes.  Let's start with our PrivateRoute component:
 
-src/components/PrivateRoute.js
+<span class="font-weight-bold">*src/components/PrivateRoute.js*</span>
 
 <pre class="p-2 bg-primary text-light">
 import React, { useContext } from "react";
@@ -133,16 +133,16 @@ import { AuthContext } from "./Auth";
 const PrivateRoute = ({ component: ComponentToRender, ...rest }) => {
   const {currentUser} = useContext(AuthContext);
   return (
-    <Route
+    &lt;Route
       {...rest}
-      render={routeProps =>
+      render={routeProps =&gt;
         !!currentUser ? (
-          <ComponentToRender {...routeProps} />
+          &lt;ComponentToRender {...routeProps} /&gt;
         ) : (
-          <Redirect to={"/login"} />
+          &lt;Redirect to={&quot;/login&quot;} /&gt;
         )
       }
-    />
+    /&gt;
   );
 };
 
@@ -152,7 +152,7 @@ export default PrivateRoute
 
 So this is a function, which takes in our component that we want to render, checks the context we made to see if the user is authenticated and returns a React Router Route component with our component we want to render in.  What we need to do is add an additional argument to this function which represents the props we need to pass to our component, then we can make sure our component we want to render can access those props:
 
-src/components/PrivateRoute.js
+<span class="font-weight-bold">*src/components/PrivateRoute.js*</span>
 
 <pre class="p-2 bg-primary text-light">
 import React, { useContext } from "react";
@@ -162,16 +162,16 @@ import { AuthContext } from "./Auth";
 const PrivateRoute = ({ component: ComponentToRender, componentProps, ...rest }) => {
   const {currentUser} = useContext(AuthContext);
   return (
-    <Route
+    &lt;Route
       {...rest}
-      render={routeProps =>
+      render={routeProps =&gt;
         !!currentUser ? (
-          <ComponentToRender {...routeProps} {...componentProps} />
+          &lt;ComponentToRender {...routeProps} {...componentProps} /&gt;
         ) : (
-          <Redirect to={"/login"} />
+          &lt;Redirect to={&quot;/login&quot;} /&gt;
         )
       }
-    />
+    /&gt;
   );
 };
 
@@ -181,7 +181,7 @@ export default PrivateRoute
 
 Note how the componentProps variable here is spread into a javascript object.  This is important as it determines how we pass in our components.  Rather than providing the props like a standard component, we need to pass them in as a javascript object.
 
-src/App.js
+<span class="font-weight-bold">*src/App.js*</span>
 
 <pre class="p-2 bg-primary text-light">
 import ... [As before]
@@ -189,18 +189,18 @@ import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   return (
-    <div className="App">
-      <AuthProvider>
-          <Router>
-            <Switch>
-            <PrivateRoute exact path="/" component={Home} componentProps={{ message:"Hello from the home page!" }} /> { /*NEW!*/ }
-            <PrivateRoute path="/user/:userId" component={UserProfile} componentProps={{ profileText:"Welcome to your profile" }} /> { /*NEW!*/ }
-            <Route exact path="/login" component={Login} /> 
-            <Route exact path="/signup" component={SignUp} /> 
-            </Switch> 
-          </Router>
-        </AuthProvider>
-    </div>
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;AuthProvider&gt;
+          &lt;Router&gt;
+            &lt;Switch&gt;
+            &lt;PrivateRoute exact path=&quot;/&quot; component={Home} componentProps=&#123;{ message:"Hello from the home page!" }&#125; /&gt; { /*NEW!*/ }
+            &lt;PrivateRoute path=&quot;/user/:userId&quot; component={UserProfile} componentProps=&#123;{ profileText:"Welcome to your profile" }&#125; /&gt; { /*NEW!*/ }
+            &lt;Route exact path=&quot;/login&quot; component={Login} /&gt; 
+            &lt;Route exact path=&quot;/signup&quot; component={SignUp} /&gt; 
+            &lt;/Switch&gt; 
+          &lt;/Router&gt;
+        &lt;/AuthProvider&gt;
+    &lt;/div&gt;
   );
 }
 
