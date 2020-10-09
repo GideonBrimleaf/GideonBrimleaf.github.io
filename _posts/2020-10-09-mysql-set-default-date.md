@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting a default date value in MySQL
+title: Setting a Default Date Value in MySQL
 author: Gideon Brimleaf
 postHero: /assets/images/MySQL-Logo.jpg
 description: Defaulting the date value for a column to the current timestamp in MySQL
@@ -19,7 +19,7 @@ MySQL was a little later to the game - before v 5.6.5 [it wasn't possible to use
 ALTER TABLE table_name CHANGE date_column_name date_column_name TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 </pre>
 
-What this does is, rather than altering the default properties on the existing column, swaps out the entire column with a new column with the properties you need.  This leads to the slightly confusing query structure that looks as if we're duplicating the date_column_name argument but we're effectively declaring a whole new column with the same column name like so:
+What this does is, rather than altering the default properties on the existing column, swaps out the entire column with a new column with the properties you need.  This leads to the slightly confusing query structure that looks as if we're duplicating the <span class="code-snippet">date_column_name</span> argument but we're effectively declaring a whole new column with the same column name like so:
 
 <pre class="p-2 bg-primary text-light">
 ALTER TABLE table_name CHANGE old_date_column_name new_date_column_name TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
