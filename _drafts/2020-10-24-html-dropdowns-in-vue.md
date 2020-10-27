@@ -6,16 +6,16 @@ postHero: /assets/images/MySQL-Logo.jpg
 description: How to define a default value for a dropdown using the data layer in Vue.js
 ---
 
-Vue is a powerful framework for giving users a dynamic, responsive experience in your web app.  The edge it has over React is its ability to neatly slot into server-side rendered templates in a lean fashion as offer the VueCLI for ambitions single-page apps. How it interacts with core HTML elements does have its quirks to be mindful of.  When rendering a dropdown in HTML you can have a simple set of options with a default prompt to select one of them like so:
+Vue is a powerful framework for giving users a dynamic, responsive experience in your web app.  The edge it has over React is its ability to neatly slot into server-side rendered templates in a lean fashion as well as offer the VueCLI for ambitious single-page apps. However, the way it interacts with core HTML elements does have its quirks to be mindful of.  When rendering a dropdown in HTML you can have a simple set of options with a default prompt to select one of them like so:
 
 ```html
 <section>
   <h1>My Amazing Selector!</h1>
   <select>
-    <option disabled>Select a Thing:</option>
-    <option>Banana</option>
-    <option>Orange</option>
-    <option>Apple</option>
+    <option value="" selected="selected" disabled>Select a Thing:</option>
+    <option value="Banana">Banana</option>
+    <option value="Orange">Orange</option>
+    <option value="Apple">Apple</option>
   </select>
 </section>
 ```
@@ -24,7 +24,7 @@ The default option as the first item would be rendered first but you wouldn't be
 
 [Show index.html view]
 
-Let's say we wanted to dynamically generate the drop down using Vue - the options would be held as an array in the data layer and then we loop over them rendering each option.  We want to hold what got selected as a new variable in our data layer to so we're going to ```v-model``` the select to generate the two-way binding to achieve this.
+Let's say we wanted to dynamically generate the dropdown using Vue - the options would be held as an array in the data layer and then we loop over them rendering each option.  We want to hold what got selected as a new variable in our data layer to so we're going to ```v-model``` the select to generate the two-way binding to achieve this.
 
 ```js
 const App = {
@@ -39,7 +39,7 @@ const App = {
     <section>
       <h1>My Amazing Selector!</h1>
       <select v-model="selectedStuff">
-        <option value="" disabled>Select a Thing:</option>
+        <option value="" selected="selected" disabled>Select a Thing:</option>
         <option v-for="thing in this.stuff">{{thing}}</option>
       </select>
     </section>
@@ -55,7 +55,7 @@ This will hook into our index.html where we have an element with the ```id="app"
 
 [Show index.html view]
 
-Uh oh.  Looks like the default value is no longer showing - even though it shows when you click on the dropdown. This is because of the way our HTML is now interacting with Vue - because we have a ```v-model``` property on the select, HTML will be rendered for values that have an appropriately matching property in the data layer.  At the moment, our disabled option has been set with an empty string value.  As this does not match the ```selectedStuff``` data that we are modelling (which is ```null```) it essentially breaks when it tries to render.  We need to get the disabled option to have a value that matches and there are two ways to achieve this:
+Uh oh.  Looks like the default value is no longer showing - even though it shows when you click on the dropdown. This is because of the way our HTML is now interacting with Vue - because we have a ```v-model``` property on the select, HTML will be rendered for values that have an appropriately matching property in the data layer.  At the moment, our disabled option has an empty string as its value.  As this does not match the ```selectedStuff``` data that we are modelling (which is ```null```) it essentially breaks when it tries to render.  We need to get the disabled option to have a value that matches and there are two ways to achieve this:
 
 1. Change the data point that is linked in the ```v-model``` to an empty string:
 
@@ -72,7 +72,7 @@ const App = {
     <section>
       <h1>My Amazing Selector!</h1>
       <select v-model="selectedStuff">
-        <option value="" disabled>Select a Thing:</option>
+        <option value="" selected="selected" disabled>Select a Thing:</option>
         <option v-for="thing in this.stuff">{{thing}}</option>
       </select>
     </section>
@@ -84,7 +84,7 @@ new Vue({
 }).$mount(`#app`);
 ```
 
-This option is the simplest fix as we already have our disabled default option set up with an empty string value.  Setting an empty string may not be as semantic as keeping it as ```null``` though in the data layer and may cause interesting bugs down the road.
+This is the simplest fix as we already have our disabled default option set up with an empty string value.  Setting an empty string may not be as semantic as keeping it as ```null``` though in the data layer and may cause interesting bugs down the road.
 
 2. Use v-bind to give the default option a ```null``` value.
 
