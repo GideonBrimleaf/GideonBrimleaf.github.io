@@ -23,7 +23,7 @@ We need two pieces of information to shut down the pre-existing process. We alre
 We can look this up with the following, passing in the port number as our argument:
 
 <pre class="p-2 bg-primary text-light">
-$ lsof -i: 4567
+$ lsof -i:4567
 </pre>
 
 This command stands for list open files (even though we think of our app as a service that is running, linux/unix considers our app to be a file that is open).  The -i argument allows us to search by our port number specifically. So the result of our command will be:
