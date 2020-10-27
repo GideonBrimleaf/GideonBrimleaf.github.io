@@ -2,7 +2,7 @@
 layout: post
 title: Default Dropdown Values using the Vue.js Data Layer
 author: Gideon Brimleaf
-postHero: /assets/images/MySQL-Logo.jpg
+postHero: /assets/images/vuejs-wide.png
 description: How to define a default value for a dropdown using the data layer in Vue.js
 ---
 
@@ -13,9 +13,9 @@ Vue.js is a powerful framework for giving users a dynamic, responsive experience
   &lt;h1&gt;My Amazing Selector!&lt;/h1&gt;
   &lt;select&gt;
     &lt;option value=&quot;&quot; selected=&quot;selected&quot; disabled&gt;Select a Thing:&lt;/option&gt;
-    &lt;option value=&quot;Banana&quot;&gt;Banana&lt;/option&gt;
-    &lt;option value=&quot;Orange&quot;&gt;Orange&lt;/option&gt;
-    &lt;option value=&quot;Apple&quot;&gt;Apple&lt;/option&gt;
+    &lt;option value=&quot;banana&quot;&gt;banana&lt;/option&gt;
+    &lt;option value=&quot;orange&quot;&gt;orange&lt;/option&gt;
+    &lt;option value=&quot;apple&quot;&gt;apple&lt;/option&gt;
   &lt;/select&gt;
 &lt;/section&gt;
 </pre>
@@ -61,7 +61,7 @@ This will hook into our index.html where we have an element with the <span class
 
 Uh oh.  Looks like the default value is no longer showing - even though it shows when you click on the dropdown. This is because of the way our HTML is now interacting with Vue - because we have a <span class="code-snippet">v-model</span> property on the select, HTML will be rendered for values that have an appropriately matching property in the data layer.  At the moment, our disabled option has an empty string as its value.  As this does not match the <span class="code-snippet">selectedStuff</span> data that we are modelling (which is <span class="code-snippet">null</span>) it essentially breaks when it tries to render.  We need to get the disabled option to have a value that matches and there are two ways to achieve this:
 
-1. Change the data point that is linked in the <span class="code-snippet">v-model</span> to an empty string:
+<strong>Option 1: Change the data point that is linked in the <span class="code-snippet">v-model</span> to an empty string:</strong>
 
 <pre class="p-2 bg-primary text-light">
 const App = {
@@ -90,7 +90,7 @@ new Vue({
 
 This is the simplest fix as we already have our disabled default option set up with an empty string value.  Setting an empty string may not be as semantic as keeping it as <span class="code-snippet">null</span> though in the data layer and may cause interesting bugs down the road.
 
-2. Use <span class="code-snippet">v-bind</span> to give the default option a <span class="code-snippet">null</span> value.
+<strong> Option 2: Use <span class="code-snippet">v-bind</span> to give the default option a <span class="code-snippet">null</span> value.</strong>
 
 <pre class="p-2 bg-primary text-light">
 const App = {
