@@ -29,7 +29,7 @@ $ lsof -i:4567
 This command stands for list open files (even though we think of our app as a service that is running, linux/unix considers our app to be a file that is open).  The -i argument allows us to search by our port number specifically. So the result of our command will be:
 
 <pre class="p-2 bg-primary text-light">
-$ lsof -i: 4567
+$ lsof -i:4567
 COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 ruby    46070 user   11u  IPv6 0x51b82cee2c65b0a9      0t0  TCP localhost:tram (LISTEN)
 ruby    46070 user   12u  IPv4 0x51b82cee28b484a9      0t0  TCP localhost:tram (LISTEN)
