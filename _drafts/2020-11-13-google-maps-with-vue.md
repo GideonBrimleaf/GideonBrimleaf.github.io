@@ -89,6 +89,108 @@ If all goes well you should see something like the following:
 
 [Show the map screenshot]
 
-That's all well and good but we really want to incorporate our newly minted Google Map into our Vue app - which hooks into the section element with the app id.  This can be so we can leverage all the juicy functionality that Vue can give us, such as a nice juicy data layer.
+That's all well and good but we really want to incorporate our newly minted Google Map into our Vue app - which hooks into the section element with the app id.  This can be so we can leverage all the functionality that Vue can give us, such as a nice juicy data layer.
 
-So we might think that we can move our initMap function to our `App.js` file.
+The first thing to do is to remove the map section element from our index.html file as we want to render the map inside our Vue component instead. 
+
+We might then think that we can delete the `maps.js` file and move our initMap function to our `App.js` file and trigger it when the component loads like so:
+
+<span class="font-weight-bold">*./src/App.js*</span>
+
+```
+const App = {
+  name: 'App',
+  data() {
+    return {
+      map: null
+    }
+  },
+  mounted() {
+      this.initMap()
+  },
+  methods: {
+    initMap: function() {
+    
+      this.map = new google.maps.Map( document.getElementById("map"), {
+        center: {
+          lat: 51.513329,
+          lng: -0.088950
+        },
+        zoom: 14
+      });
+    }
+  },
+  template: `
+    <section id="map">
+    </section>
+  `,
+};
+
+new Vue({
+  render: h => h(App),
+}).$mount(`#app`);
+```
+
+This would be great if it wasn't for the following problem:
+
+[Show screenshot of the undefined error]
+
+Looks like our Vue component isn't talking to our Google Maps API script properly!  We need our API call to happen in the same context where we define our map creation (i.e. inside the Vue component).  The complicating factor here is that the API call happens as a script tag in our HTML which references a globally accessible function (initMap) to create our function.
+
+This means we need a couple of things to happen when the Vue component loads:
+
+1. Alter our initMap function so that the map is created inside the Vue component defined in the template.
+2. Register our initMap function to the global scope - so that a Google Maps API url can access it
+3. Inject the script tag which calls the API
+
+<span class="font-weight-bold">*./src/App.js*</span>
+
+```
+const App = {
+  name: 'App',
+  data() {
+    return {
+      map: null
+    }
+  },
+  mounted() {
+      window.gmapsCallback = () => this.initMap() // NEW!
+      this.gmapsInit() // NEW!
+  },
+  methods: {
+    // NEW!
+    gmapsInit: function() {
+      const apiKey = '<YOUR API KEY HERE>';
+      const callbackName = 'gmapsCallback';
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.defer = true;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=${callbackName}`;
+      document.querySelector('head').appendChild(script);
+    },
+    initMap: function() {
+    
+      this.map = new google.maps.Map( this.$el, { // NEW!
+        center: {
+          lat: 51.513329,
+          lng: -0.088950
+        },
+        zoom: 14
+      });
+    }
+  },
+  template: `
+    <section id="map">
+    </section>
+  `,
+};
+
+new Vue({
+  render: h => h(App),
+}).$mount(`#app`);
+```
+
+So now the initMap function is added to the global window scope once the Vue component loads, we then inject the script tag into our `index.html` which can then refer to it as well as your API Key. Once that is in you should see a nice map being rendered!
+
+[Show map]
