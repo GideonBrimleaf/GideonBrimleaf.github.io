@@ -140,11 +140,11 @@ This would be great if it wasn't for the following problem:
 <img src="/assets/images/vue-gmaps-error.png" class="img-fluid" alt="simple html dropdown">
 </pre>
 
-Looks like our Vue component isn't talking to our Google Maps API script properly!  We need our API call to happen in the same context where we define our map creation (i.e. inside the Vue component).  The complicating factor here is that the API call runs in a script tag in our HTML which references a globally accessible function (<span class="font-weight-bold">initMap</span>) to create our function.
+Looks like our Vue component isn't talking to our Google Maps API script properly!  We need our API call to happen in the same context where we define our map creation (i.e. inside the Vue component).  The complicating factor here is that the API call runs in a script tag in our HTML which references a globally accessible function (<span class="code-snippet">initMap</span>) to create our function.
 
 This means we need a couple of things to happen when the Vue component loads:
 
-1. Register our <span class="font-weight-bold">initMap</span> function to the global scope - so that a Google Maps API url can access it
+1. Register our <span class="code-snippet">initMap</span> function to the global scope - so that a Google Maps API url can access it
 2. Inject the script tag which calls the API
 
 <span class="font-weight-bold">*./src/App.js*</span>
@@ -195,7 +195,7 @@ new Vue({
 }).$mount(`#app`);
 </pre>
 
-So now the initMap function is added to the global window scope once the Vue component loads, we then inject the script tag into our <span class="font-weight-bold">index.html</span> which can then refer to it as well as your API Key. Once that is in you should see a nice map being rendered!
+So now the initMap function is added to the global window scope once the Vue component loads, we then inject the script tag into our <span class="code-snippet">index.html</span> which can then refer to it as well as your API Key. Once that is in you should see a nice map being rendered!
 
 <pre class="shadowy">
 <img src="/assets/images/working-vue-gmaps.png" class="img-fluid" alt="simple html dropdown">
