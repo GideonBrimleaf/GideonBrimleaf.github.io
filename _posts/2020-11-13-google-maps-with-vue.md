@@ -2,7 +2,7 @@
 layout: post
 title: A super-light Google Maps Vue.js App
 author: Gideon Brimleaf
-postHero: /assets/images/vuejs-wide.png
+postHero: /assets/images/Google-Maps-Logo.png
 description: Google Maps integration with Vue.js in the smallest way possible
 ---
 
