@@ -57,12 +57,13 @@ function initMap() {
   &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js&quot;&gt;&lt;/script&gt;
   &lt;script type=&quot;module&quot; src=&quot;./main.js&quot;&gt;&lt;/script&gt;
   &lt;link rel=&quot;stylesheet&quot; href=&quot;./main.css&quot;&gt;
-  &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot; defer&gt;&lt;/script&gt;
-  &lt;title&gt;My Amazing Selector&lt;/title&gt;
+  &lt;script src=&quot;./map.js&quot;&gt;&lt;/script&gt; &lt;!-- New --&gt;
+  &lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot; defer&gt;&lt;/script&gt; &lt;!-- New --&gt;
+  &lt;title&gt;My Amazing Map&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;section id=&quot;app&quot;&gt;&lt;/section&gt;
-  &lt;section id=&quot;map&quot;&gt;&lt;/section&gt;
+  &lt;section id=&quot;map&quot;&gt;&lt;/section&gt; &lt;!-- New --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -200,3 +201,5 @@ So now the initMap function is added to the global window scope once the Vue com
 <pre class="shadowy">
 <img src="/assets/images/working-vue-gmaps.png" class="img-fluid" alt="simple html dropdown">
 </pre>
+
+You can find a sample codebase for this app [here](https://github.com/GideonBrimleaf/vue-one-pager/tree/super-simple-maps-app)
