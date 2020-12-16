@@ -2,13 +2,13 @@
 layout: post
 title: Mixing in functionality with Interface Companion Objects in Kotlin
 author: Gideon Brimleaf
-postHero: /assets/images/kotlinlogo.png
+postHero: /assets/images/wwe-figurines.jpg
 description: Mixins with Interface Companion Objects in Kotlin
 ---
 
-Much like Ruby's mixins, Kotlin also bypasses the need for crazy inheritance chains and allow us a flatter, more flexible way to define behaviours of our class by allowing interfaces to not just enforce, but define the methods for our classes to use.  Let's do a Kotlin and take a look:
+Much like [Ruby's mixins](https://launchschool.com/books/oo_ruby/read/inheritance#mixinginmodules), Kotlin also bypasses the need for crazy inheritance chains and allows us a more flexible way to define behaviours on our classes by allowing interfaces to not just enforce, but also define the methods for our classes to use.  Let's do a Kotlin and take a look:
 
-Let's imagine we are modelling a pro-wrestling promotion - you may not realise it but wrestlers don't all have the same moves.  Each have a particular fighting style which we might broadly group under the following:
+Let's imagine we are modelling a pro-wrestling promotion - you may not realise it but wrestlers don't all have the same moves.  Each has a particular fighting style which we might broadly group under the following:
 
 1. Strikers - you've probably heard of Stone Cold Steve Austin or The Rock even if you didn't watch wrestling. This is your quintessential brawler type
 2. High Flying - jumping off the ropes and doing crazy flips for that extra spice
@@ -21,7 +21,7 @@ So it makes sense to have a Wrestler parent class which encapsulates the shared 
 <img src="/assets/images/wrestler-class-diagram.png" class="img-fluid" alt="class diagram for wrestlers">
 </pre>
 
-However real-life as always is a bit messy.  We can see our hardcore wrestler tends to be able to do body slams striker moves as well as a bit of high-flying (just on to some tacks). Interfaces allow us to make sure our hardcore wrestler can be considered of those types for those moves without polluting our other wrestling types. 
+However real-life as always is a bit messy.  We can see our hardcore wrestler can body slam like a striker while also jumping off ropes (just on to some tacks). Interfaces allow us to make sure our hardcore wrestler can be considered of those types for those moves without polluting our other wrestling types.
 
 <pre class="shadowy">
 <img src="/assets/images/wrestler-class-diagram-with-interfaces.png" class="img-fluid" alt="class diagram for wrestlers with interfaces">
@@ -62,7 +62,7 @@ class Hardcore(name: String, age:Int, finisher:String) : Wrestler(name, age, fin
 }
 </pre>
 
-Our Hardcore wrestler now delegates the implementations of the high-flying and striking moves to the interface, allowing us to mix in these methods into our classes where necessary. It keeps our code nice and dry and bypasses the need for complex design patterns.
+Our hardcore wrestler now delegates the implementations of the high-flying and striking moves to the interface, allowing us to mix in these methods into our classes where necessary. It keeps our code nice and dry and bypasses the need for complex design patterns.
 
 We can still override these methods if we need to later on too:
 
