@@ -2,7 +2,7 @@
 layout: post
 title: Relative Imports in Python - Without Tearing Your Hair Out
 author: Gideon Brimleaf
-postHero: /assets/images/jekyll-logo.png
+postHero: /assets/images/Python-Logo.png
 description: How to import files using relative paths in python
 ---
 
