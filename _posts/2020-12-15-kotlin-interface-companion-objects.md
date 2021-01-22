@@ -10,7 +10,7 @@ Much like [Ruby's mixins](https://launchschool.com/books/oo_ruby/read/inheritanc
 
 Let's imagine we are modelling a pro-wrestling promotion - you may not realise it but wrestlers don't all have the same moves.  Each has a particular fighting style which we might broadly group under the following:
 
-1. Strikers - you've probably heard of Stone Cold Steve Austin or The Rock even if you didn't watch wrestling. This is your quintessential brawler type
+1. Strikers - you've probably heard of Stone Cold Steve Austin or The Rock even if you don't watch wrestling. This is your quintessential brawler type
 2. High Flying - jumping off the ropes and doing crazy flips for that extra spice
 3. Submission - If you've ever tried to do yoga then you can probably guess that this is a particularly painful set of techniques
 4. Hardcore - because it's just not a spectacle if you're not choke-slamming someone off a ladder into a net of barbed wire
@@ -21,7 +21,7 @@ So it makes sense to have a Wrestler parent class which encapsulates the shared 
 <img src="/assets/images/wrestler-class-diagram.png" class="img-fluid" alt="class diagram for wrestlers">
 </pre>
 
-However real-life as always is a bit messy.  We can see our hardcore wrestler can body slam like a striker while also jumping off ropes (just on to some tacks). Interfaces allow us to make sure our hardcore wrestler can be considered of those types for those moves without polluting our other wrestling types.
+However real-life as always is a bit messier than simple inheritance can capture.  We can see our hardcore wrestler can body slam like a striker while also jumping off ropes (just on to some tacks). Interfaces allow us to make sure our hardcore wrestler can be considered of those types for those moves without polluting our other wrestlers with moves they can't do.
 
 <pre class="shadowy">
 <img src="/assets/images/wrestler-class-diagram-with-interfaces.png" class="img-fluid" alt="class diagram for wrestlers with interfaces">
