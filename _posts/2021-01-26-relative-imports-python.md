@@ -38,7 +38,7 @@ class Drink:
         return self.price_in_pence / 100
 </pre>
 
-And our test are set up using <span class="code-snippet">unittest</span> like so, importing in the class using the relative <span class="code-snippet">..</span> notation:
+And our test is set up using <span class="code-snippet">unittest</span> like so, importing in the class using the relative <span class="code-snippet">..</span> notation:
 
 <span class="font-weight-bold">drink_test.py</span>
 <pre class="p-2 bg-primary text-light">
@@ -123,7 +123,7 @@ import unittest
 import sys # added!
 sys.path.append("..") # added!
 
-from ..src.drink import Drink 
+from src.drink import Drink 
 
 class TestDrink(unittest.TestCase):
 ...
