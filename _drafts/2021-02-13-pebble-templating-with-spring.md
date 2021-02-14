@@ -2,7 +2,7 @@
 layout: post
 title: Spring MVC with Pebble Templates
 author: Gideon Brimleaf
-postHero: /assets/images/Python-Logo.png
+postHero: /assets/images/spring-pebble.png
 description: How to add Pebble templates to a Spring MVC Project in Kotlin
 ---
 
