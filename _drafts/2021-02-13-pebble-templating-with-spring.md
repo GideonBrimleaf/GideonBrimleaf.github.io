@@ -30,14 +30,14 @@ import org.springframework.web.bind.annotation.RestController
 @SpringBootApplication
 class DemoApplication
 
-fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+fun main(args: Array&lt;String&gt;) {
+	runApplication&lt;DemoApplication&gt;(*args)
 }
 
 @RestController
 class MessageResource(val service: MessageService) {
 	@GetMapping
-	fun home(): List<Message> {
+	fun home(): List&lt;Message&gt; {
 		return service.findMessages()
 	}
 
@@ -49,16 +49,16 @@ class MessageResource(val service: MessageService) {
 
 @Service
 class MessageService(val db: MessageRepository) {
-	fun findMessages(): List<Message> = db.findMessages()
+	fun findMessages(): List&lt;Message&gt; = db.findMessages()
 
 	fun post(message: Message){
 		db.save(message)
 	}
 }
 
-interface MessageRepository : CrudRepository<Message, String>{
+interface MessageRepository : CrudRepository&lt;Message, String&gt;{
 	@Query("select * from messages")
-	fun findMessages(): List<Message>
+	fun findMessages(): List&lt;Message&gt;
 }
 
 @Table("MESSAGES")
@@ -93,7 +93,7 @@ Next up, we need a pebble template to render. Let's create a new <span class="co
 @RestController
 class MessageResource(val service: MessageService) {
 	@GetMapping
-	fun home(): List<Message> {
+	fun home(): List&lt;Message> {
 		return service.findMessages()
 	}
 
@@ -194,7 +194,7 @@ fun new(): String {
 }
 
 // Added!
-private fun renderTemplate(templateName:String, templateArguments:Map<String, List<Any>>?=null):String {
+private fun renderTemplate(templateName:String, templateArguments:Map&lt;String, List&lt;Any>>?=null):String {
   val template = PebbleEngine.Builder().build().getTemplate("templates/$templateName.peb")
   val writer = StringWriter()
   template.evaluate(writer, templateArguments)
@@ -229,7 +229,7 @@ While we do have a route for handling POST requests for messages, we've got to b
 <pre class="p-2 bg-primary text-light">
 // Added!
 @PostMapping("/messages")
-fun create(@RequestBody formData: MultiValueMap<String, String>): RedirectView {
+fun create(@RequestBody formData: MultiValueMap&lt;String, String>): RedirectView {
   val message = formData["message"]!!.first()
   val newMessage = Message(text=message)
   service.post(newMessage)
