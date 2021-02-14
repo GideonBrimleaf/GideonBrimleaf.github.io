@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring MVC with Pebble Templates Part One - Showing Data
+title: Spring MVC with Pebble Templates
 author: Gideon Brimleaf
 postHero: /assets/images/Python-Logo.png
 description: How to add Pebble templates to a Spring MVC Project in Kotlin
@@ -157,9 +157,11 @@ fun index(): String {
 
 This creates a new instance of the <span class="code-snippet">Pebble Builder</span> allowing us to take our template and inject in our messages.  These need to be in a map so we can tell the pebble template that our messages are the same messages it's looking for.
 
-With that, you should be able to see your messages!
+With that, you should be able to see your messages!  You'll need to post some new ones with an API client like [Insomnia](https://insomnia.rest/) before seeing any pop up.
 
-[Screen shot!]
+<pre class="shadowy">
+<img src="/assets/images/spring-messages-list.png" class="img-fluid" alt="list of messages">
+</pre>
 
 ## Part Two - Posting Messages with Forms
 
