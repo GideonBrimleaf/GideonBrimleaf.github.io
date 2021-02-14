@@ -73,7 +73,7 @@ As mentioned, [Pebble is a fantastic templating engine](https://pebbletemplates.
 
 <pre class="p-2 bg-primary text-light">
 dependencies {
-  implementation("io.pebbletemplates:pebble-spring-boot-starter:3.1.4")  // added!
+  implementation("io.pebbletemplates:pebble-spring-boot-starter:3.1.4")  // Added!
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -111,7 +111,7 @@ class MessageResource(val service: MessageService) {
 }
 </pre>
 
-For now, we're just sending a string back. To send back a Pebble HTML template, we firstly need one. [As the Pebble docs explain](https://pebbletemplates.io/wiki/guide/spring-boot-integration/), the Pebble loader is expecting templates so sit in our <span class="code-snippet">/src/main/kotlin/resources/templates</span> directory so let's go ahead and add our messages index template there:
+For now, we're just sending a string back. To send back a Pebble HTML template, we firstly need one. [As the Pebble docs explain](https://pebbletemplates.io/wiki/guide/spring-boot-integration/), the Pebble loader is expecting templates to sit in our <span class="code-snippet">/src/main/kotlin/resources/templates</span> directory so let's go ahead and add our messages index template there:
 
 <pre class="p-2 bg-primary text-light">
 touch src/main/kotlin/resources/templates/messages_index.peb
@@ -130,9 +130,11 @@ touch src/main/kotlin/resources/templates/messages_index.peb
   &lt;section&gt;
     &lt;h1&gt;My List of Messages:&lt;/h1&gt;
     &lt;ul&gt;
+      {% raw %}
       {% for message in messages  %}
         &lt;li&gt;{{ message.text }}&lt;/li&gt;
       {% endfor %}
+      {% endraw %}
     &lt;/ul&gt;
   &lt;/section&gt;
 &lt;/body&gt;
@@ -148,7 +150,7 @@ Now we need to tell our newly minted Pebble templating engine to take this templ
 @GetMapping("/messages")
 fun index(): String {
   val messages = service.findMessages()
-  val template = PebbleEngine.Builder().build().getTemplate("templates/messages_index.peb") // added
+  val template = PebbleEngine.Builder().build().getTemplate("templates/messages_index.peb") // Added!
   val writer = StringWriter() // Added!
   template.evaluate(writer, mapOf("messages" to messages)) // Added!
   return writer.toString() // Added!
@@ -163,6 +165,7 @@ With that, you should be able to see your messages!  You'll need to post some ne
 <img src="/assets/images/spring-messages-list.png" class="img-fluid" alt="list of messages">
 </pre>
 
+<br>
 ## Part Two - Posting Messages with Forms
 
 This is taking shape.  Now we'd ideally like a way to create new messages in our app rather than using an API client of some kind so we need a route to render our HTML form.  We can copy and paste the same code like we did before for the first pass in our controller.  Note, we're not passing any data to our form view, so we omit the 
@@ -180,7 +183,7 @@ fun new(): String {
 }
 </pre>
 
-However we probably want to refactor the templating steps into its own <span class="code-snippet">render template</span> function, where we can specify the template we want and an optional argument for any data we need to pass to it.  This makes our controller code much cleaner too:
+However we probably want to refactor the templating steps into its own <span class="code-snippet">renderTemplate</span> function, where we can specify the template we want and an optional argument for any data we need to pass to it.  This makes our controller code much cleaner too:
 
 <span class="font-weight-bold">src/main/kotlin/demo/DemoApplication.kt</span>
 <pre class="p-2 bg-primary text-light">
@@ -225,7 +228,7 @@ Now we can add the <span class="code-snippet">messages_new.peb</span> file to ou
 &lt;/html&gt;
 </pre>
 
-While we do have a route for handling POST requests for messages, we've got to be really confident that the inputs from our form are going to be in the right format for Spring to automatically create a <span class="code-snippet">Message</span> object out of it.  Also, what if we want to do some extra processing/cleansing of the form inputs before we create our message object?  Other frameworks wrap HTML form data into a map of some kind that we can then manually extract and create the right kind of object we need, allowing for us to do any preprocessing we need along the way. We'll mimic this with our new route:
+While we do have a route for handling <span class="code-snippet">POST</span> requests for messages, we've got to be really confident that the inputs from our form are going to be in the right format for Spring to automatically create a <span class="code-snippet">Message</span> object out of it.  Also, what if we want to do some extra processing/cleansing of the form inputs before we create our message object?  Other frameworks wrap HTML form data into a map/hash of some kind that we can then manually extract and create the right kind of object we need, allowing for us to do any preprocessing we need along the way. We'll mimic this with our new route:
 
 <span class="font-weight-bold">src/main/kotlin/demo/DemoApplication.kt</span>
 <pre class="p-2 bg-primary text-light">
@@ -242,6 +245,6 @@ fun create(@RequestBody formData: MultiValueMap&lt;String, String>): RedirectVie
 data class Message(@Id val id: String?=null, val text: String) // Altered!
 </pre>
 
-Unlike Java, Kotlin really cares about where things could be <span class="code-snippet">null</span>, like with the fields coming in from our form. Here we're using Kotlin's <span class="code-snippet">!!</span> so that we throw an error on the incoming form data rather than accidentally sending <span class="code-snippet">null</span> values to the database. Assuming a successfully database save we then redirect to our messages.  Once you're comfortable with this all functioning you could definitely add in some more graceful error handling here.
+Unlike Java, Kotlin really cares about where things could be <span class="code-snippet">null</span>, like with the fields coming in from our form. Here we're using Kotlin's <span class="code-snippet">!!</span> so that we throw an error on the incoming form data rather than accidentally sending <span class="code-snippet">null</span> values to the database. Assuming a successful database save we then redirect to our messages.  Once you're comfortable with this all functioning you could definitely add in some more graceful error handling here.
 
 Now we have a way to create a view messages in our spring app using Pebble templates! The final code for this article [can be found here](https://github.com/GideonBrimleaf/super_springboard_snowdown/tree/spring_templating_blog_post). From here you could create a fully functional CRUD app inside Spring without any need to worry about a separate front end app.
