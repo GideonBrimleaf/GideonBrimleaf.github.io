@@ -97,8 +97,8 @@ class MessageResource(val service: MessageService) {
 		return service.findMessages()
 	}
 
-  // Added!
-  @GetMapping("/messages")
+        // Added!
+        @GetMapping("/messages")
 	fun index(): String {
 		val messages = service.findMessages()
 		return 'Pebble HTML template of messages goes here!'
@@ -168,8 +168,7 @@ With that, you should be able to see your messages!  You'll need to post some ne
 <br>
 ## Part Two - Posting Messages with Forms
 
-This is taking shape.  Now we'd ideally like a way to create new messages in our app rather than using an API client of some kind so we need a route to render our HTML form.  We can copy and paste the same code like we did before for the first pass in our controller.  Note, we're not passing any data to our form view, so we omit the 
-second argument for <span class="code-snippet">template.evaluate()</span>
+This is taking shape.  Now we'd ideally like a way to create new messages in our app rather than using an API client of some kind so we need a route to render an HTML form to allow us to enter and save messages.  We can copy and paste the same code like we did before for the first pass in our controller.  Note, we're not passing any data to our form view, so we omit the second argument for <span class="code-snippet">template.evaluate()</span>
 
 <span class="font-weight-bold">src/main/kotlin/demo/DemoApplication.kt</span>
 <pre class="p-2 bg-primary text-light">
