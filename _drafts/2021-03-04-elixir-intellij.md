@@ -27,7 +27,7 @@ After that you'll be prompted for an Elixir SDK. The plugin should detect your E
 
 After that you can enter the project details and hit `Finish`
 
-Once the project has been loaded you'll see a simple project folder with a `lib` folder for your files and ahn IntelliJ configuration `.iml` file
+Once the project has been loaded you'll see a simple project folder with a `lib` folder for your files and and IntelliJ configuration `.iml` file
 
 ```
 .
@@ -56,6 +56,8 @@ And we can now see the fruits of our labour!
 
 ### I Got Errors!
 
-The plugin isn't perfect and might not run correctly first time.  A couple of avenues to consider when bug fixing:
+The plugin isn't perfect and might not run correctly first time.  Here are couple of avenues to consider when bug fixing:
 
-If there's a general error around not finding the file/module, you may need to run `File -> Invalidate Caches/Restart`
+If there's a general error around not finding the file/module, you may need to run `File -> Invalidate Caches/Restart` to kick off IntelliJ's indexing again.
+
+If it can't find the Erlang SDK you can confirm if the Erlang Plugin picked up your install by navigating to `File -> Project Structure -> SDKs -> Elixir`
