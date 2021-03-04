@@ -3,9 +3,10 @@ layout: post
 title: Working with Elixir in IntelliJ
 author: Gideon Brimleaf
 postHero: https://media.comicbook.com/2019/03/dungeons-and-dragons-young-adventurers-guides-top-1160838.jpeg
+description: How to run Elixir in IntelliJ IDEA with the Elxir plugin
 ---
 
-Elixir is a really powerful functional language for web development, and the community have built a plugin for all the Jetbrains products so you can build using their powerful IDEs. Here's how to set up Elixir in IntelliJ.
+Elixir is a really powerful functional language for web development, and the community have built a plugin for all the Jetbrains products so you can build using their powerful IDEs. Here's how to set up Elixir in IntelliJ:
 
 Before starting - make sure you have [a working install of Elixir](https://elixir-lang.org/install.html) on your machine (for now, according to the [IntelliJ plugin docs](https://github.com/KronicDeth/intellij-elixir) this ideally should be done via Homebrew on a Mac). This will bring in both Elixir and the underlying Erlang Virtual Machine (BEAM) which Elixir runs on:
 
