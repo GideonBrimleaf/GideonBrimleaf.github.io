@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Working with Elixir in IntelliJ
+title: Working with Elixir and Phoenix in IntelliJ
 author: Gideon Brimleaf
 postHero: https://media.comicbook.com/2019/03/dungeons-and-dragons-young-adventurers-guides-top-1160838.jpeg
-description: How to run Elixir in IntelliJ IDEA with the Elxir plugin
+description: How to run Elixir and Phoenix in IntelliJ IDEA with the Elxir plugin
 ---
 
 Elixir is a really powerful functional language for web development, and the community have built a plugin for all the Jetbrains products so you can build using their powerful IDEs. Here's how to set up Elixir in IntelliJ:
 
-Before starting - make sure you have [a working install of Elixir](https://elixir-lang.org/install.html) on your machine (for now, according to the [IntelliJ plugin docs](https://github.com/KronicDeth/intellij-elixir) this ideally should be done via Homebrew on a Mac). This will bring in both Elixir and the underlying Erlang Virtual Machine (BEAM) which Elixir runs on:
+Before starting - make sure you have [a working installation of Elixir](https://elixir-lang.org/install.html) on your machine (for now, according to the [IntelliJ plugin docs](https://github.com/KronicDeth/intellij-elixir) this ideally should be done via Homebrew on a Mac). This will bring in both Elixir and the underlying Erlang Virtual Machine (BEAM) which Elixir runs on:
 
 ```
 elixir --version
@@ -54,6 +54,14 @@ end
 We now need to configure our project to run the file:
 
 And we can now see the fruits of our labour!
+
+### Working With Phoenix?
+
+The plugin supports the Phoenix web framework too.  You need to [install Phoenix](https://hexdocs.pm/phoenix/installation.html#content) and [start a new project from the command line](https://hexdocs.pm/phoenix/up_and_running.html#content).  This will build your project and its dependencies.  
+
+Opening up the project with the Erlang and Elixir plugins installed, IntelliJ should automatically setup the project with the Elixir SDK.  If not you may need to adjust this under `File -> Project Structure -> SDKs`
+
+Like an Elixir project, we need to set the configuration - but this time we need to select `Elixir Mix` because we need to run a `mix` command instead of a file.  Enter the `phx.server` into the `mix arguments field`.  With that set up you should see your Phoenix app running in IntelliJ.
 
 ### I Got Errors!
 
