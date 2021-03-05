@@ -2,7 +2,7 @@
 layout: post
 title: Working with Elixir and Phoenix in IntelliJ
 author: Gideon Brimleaf
-postHero: https://media.comicbook.com/2019/03/dungeons-and-dragons-young-adventurers-guides-top-1160838.jpeg
+postHero: /assets/images/elixir-intellij-logo.png
 description: How to run Elixir and Phoenix in IntelliJ IDEA with the Elxir plugin
 ---
 
@@ -16,15 +16,15 @@ elixir --version
 
 As Elixir runs on the BEAM - we need to be able to detect our Erlang install as well as our Elixir install in IntelliJ.  For this, we need to install two plugins via <span class="code-snippet">IntelliJ IDEA -> Preferences -> Plugins</span> - firstly the underlying [Erlang plugin](https://plugins.jetbrains.com/plugin/7083-erlang), then secondly the [Elixir plugin](https://plugins.jetbrains.com/plugin/7522-elixir).  Both of these are required to pick up the installed instances to form the SDKs on IntelliJ.
 
-Once you have these installed - we can go ahead and create our first Elixir project on IntelliJ.  The following screenshots are from [IntelliJ Community Edition 2020.3](https://www.jetbrains.com/idea/download/#section=mac):
+Once you have these plugins addsed - we can go ahead and create our first Elixir project on IntelliJ.  The following screenshots are from [IntelliJ Community Edition 2020.3](https://www.jetbrains.com/idea/download/#section=mac):
 
-Open IntelliJ and select <span class="code-snippet">New Project</span> - you can then select an Elixir project.  With the Ultimate Edition, you can also select database support. 
+Open IntelliJ and select <span class="code-snippet">New Project</span> - you can then select an Elixir project.  With the Ultimate Edition, you can also select database support:
 
 <pre class="shadowy d-inline-flex">
 <img src="/assets/images/elixir-project-select.png" class="img-fluid" alt="elixir project select">
 </pre>
 
-After that you'll be prompted for an Elixir SDK. The plugin should detect your Elixir install - and you can even set this as a default for future projects.
+After that you'll be prompted for an Elixir SDK. The plugin should detect your Elixir install - and you can even set this as a default for future projects:
 
 <pre class="shadowy d-inline-flex">
 <img src="/assets/images/elixir-sdk-select.png" class="img-fluid" alt="elixir sdk select">
@@ -36,7 +36,7 @@ After that you can enter the project details and hit <span class="code-snippet">
 <img src="/assets/images/elixir-project-naming.png" class="img-fluid" alt="elixir project naming">
 </pre>
 
-Once the project has been loaded you'll see a simple project folder with a <span class="code-snippet">lib</span> folder for your files and and IntelliJ configuration <span class="code-snippet">.iml</span> file
+Once the project has been loaded you'll see a simple project folder with a <span class="code-snippet">lib</span> folder for your files and and IntelliJ configuration <span class="code-snippet">.iml</span> file:
 
 <pre class="p-2 bg-primary text-light">
 .
@@ -67,7 +67,6 @@ We now need to configure our project to run the file.  This can be found at the 
 <pre class="shadowy d-inline-flex">
 <img src="/assets/images/elixir-edit-config.png" class="img-fluid" alt="elixir edit configuration">
 </pre>
-
 
 Go ahead and run the file to see the text printing on the screen!
 
