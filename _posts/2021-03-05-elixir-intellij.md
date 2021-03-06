@@ -20,19 +20,19 @@ Once you have these plugins addsed - we can go ahead and create our first Elixir
 
 Open IntelliJ and select <span class="code-snippet">New Project</span> - you can then select an Elixir project.  With the Ultimate Edition, you can also select database support:
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-project-select.png" class="img-fluid" alt="elixir project select">
 </pre>
 
 After that you'll be prompted for an Elixir SDK. The plugin should detect your Elixir install - and you can even set this as a default for future projects:
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-sdk-select.png" class="img-fluid" alt="elixir sdk select">
 </pre>
 
 After that you can enter the project details and hit <span class="code-snippet">Finish</span>
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-project-naming.png" class="img-fluid" alt="elixir project naming">
 </pre>
 
@@ -46,11 +46,11 @@ Once the project has been loaded you'll see a simple project folder with a <span
 
 Let's go ahead and add a file to the <span class="code-snippet">lib</span> folder and just get it to print to the terminal
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-new-file.png" class="img-fluid" alt="elixir new file">
 </pre>
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-file-naming.png" class="img-fluid" alt="elixir file naming">
 </pre>
 
@@ -64,7 +64,7 @@ end
 
 We now need to configure our project to run the file.  This can be found at the top of the window or under <span class="code-snippet">Run -> Edit Configurations</span>.  We need to select the <span class="code-snippet">Elixir</span> configuration and add the path to the file as well as the file name in the correct fields:
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-edit-config.png" class="img-fluid" alt="elixir edit configuration">
 </pre>
 
@@ -78,7 +78,7 @@ Opening up the project with the Erlang and Elixir plugins installed, IntelliJ sh
 
 Like an Elixir project, we need to set the configuration - but this time we need to select <span class="code-snippet">Elixir Mix</span> because we need to run a <span class="code-snippet">mix</span> command instead of a file.  Enter the <span class="code-snippet">phx.server</span> into the <span class="code-snippet">mix arguments field</span>.  With that set up you should see your Phoenix app running in IntelliJ.
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-phoenix-config.png" class="img-fluid" alt="elixir phoenix configuration">
 </pre>
 
@@ -90,6 +90,6 @@ If there's a general error around not finding the file/module, you may need to r
 
 If it can't find the Erlang SDK you can confirm if the Erlang Plugin picked up your install by navigating to <span class="code-snippet">File -> Project Structure -> SDKs -> Elixir</span>
 
-<pre class="shadowy d-inline-flex">
+<pre class="shadowy">
 <img src="/assets/images/elixir-sdk-verification.png" class="img-fluid" alt="elixir sdk verification">
 </pre>
