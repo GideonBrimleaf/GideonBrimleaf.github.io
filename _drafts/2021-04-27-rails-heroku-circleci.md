@@ -97,3 +97,4 @@ workflows:
  11. How can we make it so that it deploys to Heroku on a successful merge?  The first step is to set up [GitHub Checks](https://circleci.com/docs/2.0/enable-checks/).  We can then test this by checking out a new branch, making a small change and pushing to GitHub.  Raising a new PR shows a checks tab which will show if the CI pipeline was successful or not.
  12. Now we can automatically deploy to Heroku from Github with our CI pipeline in place - [Heroku docs](https://devcenter.heroku.com/articles/github-integration). There is an option to delay the deployment until the CI checks have completed, make sure this is ticked.
  13. Merge your PR into main, watch the CI pipeline kick off and a fresh deployment straight after!
+ 14. Note - if you are using the encrypted `credentials.yml` file then you need to set your `master.key` value as an environment variable in both CircleCI and Heroku.  The variable will be referenced as `RAILS_MASTER_KEY`
