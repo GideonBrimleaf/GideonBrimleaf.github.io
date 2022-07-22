@@ -6,7 +6,7 @@ postHero: /assets/images/Python-Logo.png
 description: How to import files using relative paths in python
 ---
 
-It's no secret - importing in Python is _A Hard Thing_.  I've suffered and done the hard work so you don't have to.
+It's no secret - [importing in Python](https://www.scaler.com/topics/import-in-python/) is _A Hard Thing_.  I've suffered and done the hard work so you don't have to.
 
 The following is compatible with Python 3.3 onwards as there's no need for empty <span class="code-snippet">__init__.py</span> files anymore to litter up your code.
 
